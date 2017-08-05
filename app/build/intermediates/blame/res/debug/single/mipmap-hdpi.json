@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    }
+]

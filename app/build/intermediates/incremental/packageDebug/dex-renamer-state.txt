@@ -1,0 +1,7 @@
+#Mon Jul 03 16:02:34 AEST 2017
+base.0=C\:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_77601f91fec6019e4f15bd40584a2af4c257064b
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_30290d9bebad72d2207d0c5e4c3fbabf49a2a2c8\\classes.dex
+base.1=C\:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_30290d9bebad72d2207d0c5e4c3fbabf49a2a2c8
+file.0=C\:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_77601f91fec6019e4f15bd40584a2af4c257064b\\classes.dex

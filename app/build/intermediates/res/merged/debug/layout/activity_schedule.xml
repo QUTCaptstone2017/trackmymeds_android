@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.app.trackmymeds.ScheduleActivity"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_title_schedule"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp" />
+
+    <ExpandableListView
+        android:id="@+id/list_view_medication_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="266dp"
+        android:layout_margin="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_delete_account"
+                style="@style/tmmButton"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_weight="0.35"
+                android:text="@string/button_delete_account" />
+
+            <Button
+                android:id="@+id/button_medication_history"
+                style="@style/tmmButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.45"
+                android:text="@string/button_medication_history" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/button_add_medication"
+            style="@android:style/Widget.ImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:background="@color/colorPrimaryDark"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
+    </LinearLayout>
+
+</LinearLayout>

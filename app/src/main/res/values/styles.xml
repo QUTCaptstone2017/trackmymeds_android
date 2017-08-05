@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/app_bg_light</item>
+        <item name="colorPrimaryDark">@color/app_bg_dark</item>
+        <item name="colorAccent">@color/app_notif</item>
+    </style>
+
+    <!-- Splash Screen -->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="colorAccent">@color/app_notif</item>
+    </style>
+
+    <style name="splashProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
+
+    </style>
+
+    <style name="tmmTextInputLayout">
+        <item name="android:background">@drawable/element_border</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="tmmTextEdit">
+        <item name="android:ellipsize">start</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="tmmButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="tmmDeleteButton" parent="tmmButton">
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="tmmSpinner" parent="@android:style/Widget.Spinner.DropDown">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:color">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="tmmRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:color">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+    </style>
+
+</resources>
