@@ -1,13 +1,23 @@
 package com.app.trackmymeds;
 
+import android.accounts.AccountManager;
+import android.accounts.Account;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Handler.Callback;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +46,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.io.BufferedReader;
 import java.io.Console;
 import java.io.BufferedOutputStream;
@@ -45,6 +56,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -65,13 +77,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
@@ -84,13 +89,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Setup activity.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
+
+        //Set up the login form.
         mEmailView = (AutoCompleteTextView)findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = (EditText)findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -184,31 +191,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return;
         }
 
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE); // 1
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo(); // 2
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            showProgress(true);
-            mAuthTask = new UserLoginTask(mEmailView.getText().toString(),
-                    mPasswordView.getText().toString());
-            mAuthTask.execute();
-
-            //System.out.println("Hella connected!");
-            //Intent intent = new Intent(this, ScheduleActivity.class);
-            //startActivity(intent);
-        }
-        else {
-            //System.out.println("Say it ain't so!");
-        }
-/*
-
-
-        // Reset errors.
+        //Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
+        //Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -232,18 +219,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
+        else {
+            //Check internet connectivity.
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+            if (networkInfo == null || !networkInfo.isConnected()) {
+                System.out.println("Not connected to the internet.");
+                mEmailView.setError(getString(R.string.error_no_internet));
+                cancel = true;
+            }
+        }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            System.out.println("Cancelling login attempt...");
+            //There was an error; don't attempt login and focus the first
+            //form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            System.out.println("Connected to the internet.");
+
+            //Show the progress spinner...
             showProgress(true);
+
+            //Create and run an auth task in the background.
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }*/
+            mAuthTask.execute((Void)null);
+
+            //Intent intent = new Intent(this, ScheduleActivity.class);
+        }
     }
 
     private boolean isEmailValid(String email) {
@@ -357,27 +362,76 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    final String LOGIN_URL = "https://trackmymeds.frb.io/sign_in_mobile";
-
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
+        //TODO: Move this.
+        private static final String PREFS_NAME = "TrackMyMedsPref";
+
+        private static final String LOGIN_URL = "https://trackmymeds.frb.io/sign_in_mobile";
         private final String mEmail;
         private final String mPassword;
+        private String m_response;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            m_response = "";
+        }
+
+        private String getAuthToken() {
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            String authToken = settings.getString("auth_token", "");
+
+            return authToken;
+        }
+
+        private void storeAuthToken(String authToken) {
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("auth_token", authToken);
+
+            editor.commit();
         }
 
         private boolean writeStream(OutputStream out) {
-            return false;
+            try {
+                JSONObject jsonAuth = new JSONObject();
+                JSONObject jsonCred = new JSONObject();
+                jsonCred.put("email", mEmail);
+                jsonCred.put("password", mPassword);
+                jsonAuth.put("auth", jsonCred);
+
+                OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
+                osw.write(jsonAuth.toString());
+                osw.flush();
+                osw.close();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return false;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return false;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            return true;
         }
 
         private boolean readStream(InputStream in) {
+            try {
+                m_response = convertToString(in);
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             return false;
         }
 
-        private String authenticate() {
+        private boolean authenticate() {
             try {
                 URL url = new URL(LOGIN_URL);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -390,57 +444,65 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 urlConnection.connect();
 
                 OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-
-                try {
-                    JSONObject jsonAuth = new JSONObject();
-                    JSONObject jsonCred = new JSONObject();
-                    jsonCred.put("email", mEmail);
-                    jsonCred.put("password", mPassword);
-                    jsonAuth.put("auth", jsonCred);
-
-                    OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-                    osw.write(jsonAuth.toString());
-                    osw.flush();
-                    osw.close();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (!writeStream(out)) {
+                    System.out.println("Problem with reading the output stream.");
+                    return false;
                 }
 
-                //writeStream(out);
-
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                //readStream(in);
-                String result = convertToString(in);
-                System.out.println("HTTP INPUT:");
-                System.out.println(result);
+                if (!readStream(in)) {
+                    System.out.println("Problem with reading the input stream.");
+                    return false;
+                }
 
                 urlConnection.disconnect();
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                return false;
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
             }
 
-            return "";
+            return true;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            String output = authenticate();
-            System.out.println(output);
+            m_response = "";
+            if (authenticate()) {
+                //Successful login.
+                System.out.println("Successfully sent authentication request.");
 
-            // TODO: attempt authentication against a network service.
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                //DEBUG:
+                System.out.println("RESPONSE: ");
+                System.out.println(m_response);
+
+                //Handle response.
+                try {
+                    JSONObject responseJSON = new JSONObject(m_response);
+                    boolean valid = responseJSON.getBoolean("valid");
+                    if (valid) {
+                        System.out.println("Authentication successful.");
+                        //String sessionID = responseJSON.getString("sessionID");
+                        storeAuthToken(responseJSON.getString("mobile_token"));
+                        System.out.println("AUTH TOKEN, DO NOT LOOK:");
+                        System.out.println(getAuthToken());
+                    }
+                    else {
+                        System.out.println("Authentication failed.");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return false;
                 }
             }
+            else {
+                System.out.println("Failed to send authentication request.");
+                return false;
+            }
 
-            // TODO: register the new account here.
             return true;
         }
 

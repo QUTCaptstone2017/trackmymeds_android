@@ -1926,7 +1926,7 @@
         <item>Medicine 2</item>
         <item>Medicine 3</item>
         <item>Medicine 4</item>
-    </string-array><string name="register_activity_title">Create An Account:</string><string name="permission_rationale">"Contacts permissions are needed for providing email
+    </string-array><string name="register_activity_title">Create An Account:</string><string name="error_no_internet">Could not connect to the internet</string><string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string><string name="dummy_content">DUMMY\nCONTENT</string></file><file path="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\res\values\styles.xml" qualifiers=""><style name="tmmTextInputLayout">
         <item name="android:background">@drawable/element_border</item>
