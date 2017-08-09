@@ -754,11 +754,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="prompt_dob">Date of Birth (DD/MM/YYYY)</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_email2">Re-Enter Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_password2">Re-Enter Password</string>
+    <string name="prompt_yob">Year of Birth</string>
     <string name="register_activity_title">Create An Account:</string>
     <string name="register_h1">Personal Details:</string>
     <string name="register_h2">Email:</string>

@@ -13,7 +13,7 @@
 
     <!-- Login progress -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/loginTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/activity_title_login"

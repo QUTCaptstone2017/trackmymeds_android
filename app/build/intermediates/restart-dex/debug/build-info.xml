@@ -6,22 +6,22 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1502100750518"
+    timestamp="1502273261382"
     token="-4079445275525278514"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="253" />
+        duration="485" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="15" />
+        duration="24" />
     <task
         name="verifier"
-        duration="2" />
+        duration="28" />
 
     <artifact
         location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
@@ -29,7 +29,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1502084899511"
+        timestamp="1502271839182"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
@@ -70,7 +70,15 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1502100750518"
+        timestamp="1502272297417"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1502273261382"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_2.apk"

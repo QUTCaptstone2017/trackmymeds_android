@@ -485,13 +485,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     boolean valid = responseJSON.getBoolean("valid");
                     if (valid) {
                         System.out.println("Authentication successful.");
-                        //String sessionID = responseJSON.getString("sessionID");
-                        storeAuthToken(responseJSON.getString("mobile_token"));
-                        System.out.println("AUTH TOKEN, DO NOT LOOK:");
-                        System.out.println(getAuthToken());
+                        storeAuthToken(responseJSON.getString("mobile_auth_token"));
+                        return true;
                     }
                     else {
                         System.out.println("Authentication failed.");
+                        return false;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -502,8 +501,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 System.out.println("Failed to send authentication request.");
                 return false;
             }
-
-            return true;
         }
 
         private String convertToString(InputStream is) throws IOException {
@@ -522,7 +519,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                //finish();
+                Intent intent = new Intent(getBaseContext(), ScheduleActivity.class);
+                startActivity(intent);
+
+                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

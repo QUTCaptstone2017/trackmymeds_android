@@ -20,12 +20,12 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_search_view.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_mode_bar.xml"
-    },
-    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_splash.xml",
         "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",

@@ -25,7 +25,7 @@
     <string name="last_name">Last Name</string>
     <string name="prompt_email2">Re-Enter Email</string>
     <string name="prompt_password2">Re-Enter Password</string>
-    <string name="prompt_dob">Date of Birth (DD/MM/YYYY)</string>
+    <string name="prompt_yob">Year of Birth</string>
     <string name="button_create_account">Create Account</string>
     <string name="register_activity_title">Create An Account:</string>
     <string name="button_medication_history">Medication History</string>
