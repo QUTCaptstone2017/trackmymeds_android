@@ -12,14 +12,6 @@
     tools:context="com.app.trackmymeds.RegisterActivity">
 
     <!-- Registration progress -->
-    <TextView
-        android:id="@+id/registerActivityTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/register_activity_title"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/registration_progress"

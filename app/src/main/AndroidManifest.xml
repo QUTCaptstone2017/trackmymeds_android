@@ -5,7 +5,7 @@
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/activity_title_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,11 +33,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ScheduleActivity" />
-        <activity android:name=".AddMedicineActivity" />
-        <activity android:name=".MedicationHistoryActivity" />
-        <activity android:name=".DeleteAccountActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/activity_title_register" />
+        <activity
+            android:name=".ScheduleActivity"
+            android:theme="@style/AppTheme.tmmNoActionBarDark"
+            android:label="@string/activity_title_schedule" />
+        <activity
+            android:name=".AddMedicationActivity"
+            android:label="@string/activity_title_add_medication" />
+        <activity
+            android:name=".MedicationHistoryActivity"
+            android:label="@string/activity_title_medication_history" />
+        <activity
+            android:name=".MedListActivity"
+            android:theme="@style/AppTheme.tmmNoActionBarDark"
+            android:label="@string/activity_title_med_list">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/med_list_searchable" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DeleteAccountActivity"
+            android:label="@string/activity_title_delete_account"></activity>
     </application>
 
 </manifest>

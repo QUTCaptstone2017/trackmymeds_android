@@ -4,6 +4,10 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\layout\\design_layout_snackbar_include.xml"
     },
     {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_med_list.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\activity_med_list.xml"
+    },
+    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_expanded_menu_layout.xml"
     },
@@ -14,6 +18,10 @@
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\group_indicator.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\group_indicator.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
@@ -76,10 +84,6 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\layout\\design_navigation_menu.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_add_medicine.xml",
-        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\activity_add_medicine.xml"
-    },
-    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_schedule.xml",
         "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\activity_schedule.xml"
     },
@@ -140,6 +144,10 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\spinner_item.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\spinner_item.xml"
+    },
+    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\layout\\design_navigation_item_subheader.xml"
     },
@@ -162,6 +170,10 @@
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_sheet_dialog.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\layout\\design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_add_medication.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\layout\\activity_add_medication.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",

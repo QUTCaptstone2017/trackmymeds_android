@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:2:1-43:12
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:2:1-65:12
 	package
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:3:5-34
 		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
@@ -22,7 +22,7 @@ ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:7:22-68
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:8:5-78
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:8:5-79
 	android:name
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:8:22-76
 uses-permission#android.permission.INTERNET
@@ -30,7 +30,7 @@ ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:9:22-64
 application
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:11:5-41:19
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:11:5-63:19
 MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\749c58c673e78f819910a967da12778862aa5854\output\AndroidManifest.xml:26:5-20
@@ -58,7 +58,7 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android
 activity#com.app.trackmymeds.LoginActivity
 ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:18:9-26:20
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:20:13-45
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:20:13-57
 	android:name
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:19:13-42
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
@@ -78,25 +78,57 @@ ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:28:13-43
 activity#com.app.trackmymeds.RegisterActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:36:9-54
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:36:9-38:63
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:38:13-60
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:36:19-51
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:37:13-45
 activity#com.app.trackmymeds.ScheduleActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:37:9-54
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:39:9-42:63
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:42:13-60
+	android:theme
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:41:13-63
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:37:19-51
-activity#com.app.trackmymeds.AddMedicineActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:38:9-57
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:40:13-45
+activity#com.app.trackmymeds.AddMedicationActivity
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:43:9-45:69
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:45:13-66
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:38:19-54
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:44:13-50
 activity#com.app.trackmymeds.MedicationHistoryActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:39:9-63
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:46:9-48:73
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:48:13-70
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:39:19-60
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:47:13-54
+activity#com.app.trackmymeds.MedListActivity
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:49:9-59:20
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:52:13-60
+	android:theme
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:51:13-63
+	android:name
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:50:13-44
+meta-data#android.app.searchable
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:53:13-55:63
+	android:resource
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:55:17-60
+	android:name
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:54:17-54
+intent-filter#android.intent.action.SEARCH
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:56:13-58:29
+action#android.intent.action.SEARCH
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:57:17-71
+	android:name
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:57:25-68
 activity#com.app.trackmymeds.DeleteAccountActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:40:9-68
+ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:60:9-62:78
+	android:label
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:62:13-66
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:40:19-56
+		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:61:13-50
 uses-sdk
 INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:21:5-23:62

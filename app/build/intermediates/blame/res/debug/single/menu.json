@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\menu\\schedule_menu.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\menu\\schedule_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\menu\\med_list.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\menu\\med_list.xml"
+    }
+]

@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
-    <string-array name="medication_dosages">
-        <item>Dosage</item>
-        <item>Dosage 1</item>
-        <item>Dosage 2</item>
-        <item>Dosage 3</item>
-        <item>Dosage 4</item>
-    </string-array>
-    <string-array name="medication_names">
-        <item>Medicine</item>
+    <string-array name="add_medication_products">
         <item>Medicine 1</item>
         <item>Medicine 2</item>
         <item>Medicine 3</item>
         <item>Medicine 4</item>
     </string-array>
-    <string-array name="tablet_count">
-        <item>Tablets to Take</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
+    <string-array name="add_medication_repeat">
+        <item>Never</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Custom</item>
     </string-array>
     <string-array name="time_mod">
         <item>AM</item>
@@ -713,20 +698,40 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="action_medication_history">Medication History</string>
     <string name="action_register">Create Account</string>
+    <string name="action_settings">Settings</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_fb">Login With Facebook</string>
     <string name="action_sign_in_short">Login</string>
     <string name="activity_title_add_medication">Add Medication:</string>
+    <string name="activity_title_delete_account">Delete Account:</string>
     <string name="activity_title_login">Login:</string>
+    <string name="activity_title_med_list">Medication List:</string>
     <string name="activity_title_medication_history">Medication History:</string>
+    <string name="activity_title_register">Create An Account:</string>
     <string name="activity_title_schedule">Medication Schedule:</string>
-    <string name="add_medication_h1">Medication Details:</string>
-    <string name="add_medication_h2">Time Details:</string>
-    <string name="add_medication_h3">Recurring:</string>
-    <string name="add_medication_rec_daily">Daily</string>
-    <string name="add_medication_rec_once">Once Only</string>
-    <string name="add_medication_rec_weekly">Weekly</string>
+    <string name="activity_title_splash">SplashActivity</string>
+    <string name="add_medication_h1">Brand Details:</string>
+    <string name="add_medication_h2">Product Details:</string>
+    <string name="add_medication_h3">Set Timing:</string>
+    <string name="add_medication_h4">Set Details:</string>
+    <string name="add_medication_h5">Recurring:</string>
+    <string name="add_medication_hint_date">Example: 17:30</string>
+    <string name="add_medication_hint_items_remaining">Example: 3</string>
+    <string name="add_medication_hint_items_to_take">Example: 1</string>
+    <string name="add_medication_hint_nickname">Example: Heart Medication</string>
+    <string name="add_medication_hint_repeat_custom">Example: 3</string>
+    <string name="add_medication_hint_time">Example: 2017-08-20</string>
+    <string name="add_medication_label_brand_name">Brand Name:</string>
+    <string name="add_medication_label_date">Start Date:</string>
+    <string name="add_medication_label_items_remaining">Items Remaining:</string>
+    <string name="add_medication_label_items_to_take">Items to Take:</string>
+    <string name="add_medication_label_nickname">Nickname:</string>
+    <string name="add_medication_label_products">Select a Product:</string>
+    <string name="add_medication_label_repeat">Repeats:</string>
+    <string name="add_medication_label_repeat_custom">Day Interval:</string>
+    <string name="add_medication_label_time">Start Time:</string>
     <string name="app_name">TrackMyMeds</string>
     <string name="app_title">Track My\nMeds</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
@@ -759,14 +764,17 @@
     <string name="prompt_password">Password</string>
     <string name="prompt_password2">Re-Enter Password</string>
     <string name="prompt_yob">Year of Birth</string>
-    <string name="register_activity_title">Create An Account:</string>
     <string name="register_h1">Personal Details:</string>
     <string name="register_h2">Email:</string>
     <string name="register_h3">Password:</string>
+    <string name="search_hint">Enter medication brand…</string>
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="tablet_count_prompt">Tablets To Take</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <style name="ActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -775,10 +783,13 @@
         <item name="android:windowEnterAnimation">@anim/design_bottom_sheet_slide_in</item>
         <item name="android:windowExitAnimation">@anim/design_bottom_sheet_slide_out</item>
     </style>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="actionMenuTextColor">@color/app_bg_dark</item>
         <item name="colorPrimary">@color/app_bg_light</item>
         <item name="colorPrimaryDark">@color/app_bg_dark</item>
         <item name="colorAccent">@color/app_notif</item>
+        <item name="android:colorBackground">@color/app_bg_light</item>
     </style>
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -786,6 +797,13 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="colorAccent">@color/app_notif</item>
+    </style>
+    <style name="AppTheme.tmmNoActionBarDark" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorAccent">@color/app_notif</item>
+        <item name="android:background">@color/app_bg_dark</item>
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
@@ -1960,6 +1978,13 @@
         <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
     </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@color/app_bg_light</item>
+        <item name="titleTextAppearance">@style/ActionBarTitleText</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
     <style name="TextAppearance.AppCompat.Body2" parent="Base.TextAppearance.AppCompat.Body2"/>
@@ -2286,6 +2311,9 @@
         <item name="passwordToggleTint">@color/design_tint_password_toggle</item>
         <item name="passwordToggleContentDescription">@string/password_toggle_content_description</item>
     </style>
+    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/ActionBarTitleText</item>
+    </style>
     <style name="splashProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
 
     </style>
@@ -2298,17 +2326,22 @@
     <style name="tmmDeleteButton" parent="tmmButton">
         <item name="android:background">@color/colorAccent</item>
     </style>
-    <style name="tmmRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+    <style name="tmmListView" parent="@android:style/Widget.ListView">
         <item name="android:color">@android:color/white</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHighlight">@android:color/white</item>
     </style>
-    <style name="tmmSpinner" parent="@android:style/Widget.Spinner.DropDown">
+    <style name="tmmMedListButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@color/colorPrimary</item>
-        <item name="android:color">@android:color/white</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHighlight">@android:color/white</item>
         <item name="android:layout_margin">5dp</item>
+        
+    </style>
+    <style name="tmmRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:color">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
     </style>
     <style name="tmmTextEdit">
         <item name="android:ellipsize">start</item>
@@ -2320,5 +2353,12 @@
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:padding">5dp</item>
         <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="tmmToolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/app_bg_light</item>
+        <item name="titleTextAppearance">@style/ActionBarTitleText</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

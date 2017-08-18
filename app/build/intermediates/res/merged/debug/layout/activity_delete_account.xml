@@ -4,36 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.trackmymeds.DeleteAccountActivity"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    tools:context="com.app.trackmymeds.DeleteAccountActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
-        app:srcCompat="@android:drawable/ic_menu_help" />
-
-    <TextView
-        android:id="@+id/delete_account_warning"
+    <ProgressBar
+        android:id="@+id/delete_progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_weight="0.06"
-        android:text="@string/delete_account_warning"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.64"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/button_delete_account"
-        style="@style/tmmDeleteButton"
+    <LinearLayout
+        android:id="@+id/delete_account_form"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/button_delete_account" />
+        android:layout_height="441dp"
+        android:orientation="vertical"
+        android:layout_weight="0.64">
+
+        <ImageView
+            android:id="@+id/question_mark_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="16dp"
+            app:srcCompat="@android:drawable/ic_menu_help" />
+
+        <TextView
+            android:id="@+id/delete_account_warning_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="0.06"
+            android:text="@string/delete_account_warning"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/delete_account_button"
+            style="@style/tmmDeleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/button_delete_account" />
+    </LinearLayout>
 
 </LinearLayout>

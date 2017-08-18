@@ -12,14 +12,6 @@
     tools:context="com.app.trackmymeds.LoginActivity">
 
     <!-- Login progress -->
-    <TextView
-        android:id="@+id/loginTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_title_login"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/login_progress"

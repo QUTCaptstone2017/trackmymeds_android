@@ -1,10 +1,18 @@
 [
     {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\search_icon.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\search_icon.xml"
+    },
+    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\design_ic_visibility_off.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\design_ic_visibility.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\\output\\res\\drawable-anydpi-v21\\design_ic_visibility.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\add_icon.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\add_icon.xml"
     }
 ]

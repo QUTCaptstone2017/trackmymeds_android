@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.trackmymeds.AddMedicationActivity"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
+    <!-- Last line is a hack to prevent immediate text edit focus -->
+
+    <ProgressBar
+        android:id="@+id/add_medication_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.64"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:id="@+id/add_medication_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/brand_details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_medication_h1"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/brand_name_label"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_medication_label_brand_name"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/brand_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/medication_details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_medication_h2"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_products"
+                android:textColor="@android:color/white"/>
+
+            <Spinner
+                android:id="@+id/add_medication_spinner_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/add_medication_products"/>
+
+            <TextView
+                android:id="@+id/time_details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_medication_h3"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_time"
+                android:textColor="@android:color/white"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.96">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_time"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_date"
+                    android:inputType="time"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_date"
+                android:textColor="@android:color/white"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_date"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_time"
+                    android:inputType="date"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_repeat"
+                android:textColor="@android:color/white"/>
+
+            <Spinner
+                android:id="@+id/add_medication_spinner_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/add_medication_repeat"/>
+
+            <TextView
+                android:id="@+id/add_medication_label_repeat_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_repeat_custom"
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/add_medication_text_layout_repeat_custom"
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_repeat_custom"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_repeat_custom"
+                    android:inputType="date"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/set_details_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.96"
+                android:text="@string/add_medication_h4"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_items_to_take"
+                android:textColor="@android:color/white"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_to_take"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_items_to_take"
+                    android:inputType="number"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_items_remaining"
+                android:textColor="@android:color/white"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_to_remaining"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_items_remaining"
+                    android:inputType="number"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_medication_label_nickname"
+                android:textColor="@android:color/white"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/tmmTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/add_medication_edit_text_nickname"
+                    style="@style/tmmTextEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/add_medication_hint_nickname"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/button_add_medication"
+                style="@android:style/Widget.ImageButton"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom|right"
+                android:layout_weight="0.17"
+                android:adjustViewBounds="false"
+                android:background="@color/colorPrimaryDark"
+                android:cropToPadding="false"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_menu_add"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
