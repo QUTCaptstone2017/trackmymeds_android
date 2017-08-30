@@ -3,7 +3,9 @@ package com.app.trackmymeds;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -12,10 +14,17 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,8 +61,11 @@ public class AddMedicationActivity extends AppCompatActivity
 	final int NICKNAME_MAX = 30;
 
 	//Properties.
+	DeleteMedicationTask m_deleteMedicationTask;
 	AddMedicationTask m_addMedicationTask;
 	GetProductsTask m_getProductsTask;
+
+	StorageManager m_storageManager;
 
 	String m_medAddType;
 	int m_medScheduleID;
@@ -88,6 +100,16 @@ public class AddMedicationActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_medication);
+
+		//Initialise tasks.
+		m_deleteMedicationTask = null;
+		m_addMedicationTask = null;
+		m_getProductsTask = null;
+
+		m_storageManager = new StorageManager();
+
+		Toolbar myToolbar = (Toolbar) findViewById(R.id.add_med_toolbar);
+		setSupportActionBar(myToolbar);
 
 		m_progressView = findViewById(R.id.add_medication_progress);
 		m_addMedicationFormView = findViewById(R.id.add_medication_form);
@@ -182,6 +204,73 @@ public class AddMedicationActivity extends AppCompatActivity
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();
 		handleExtras(extras);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.add_med, menu);
+
+		System.out.println(m_medAddType);
+		if (m_medAddType.compareTo("add") == 0)
+		{
+			System.out.println("Hiding delete button...");
+			menu.findItem(R.id.action_delete_medication).setVisible(false);
+		}
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.action_delete_medication:
+				confirmDeleteMedication();
+			return true;
+
+			default:
+				// If we got here, the user's action was not recognized.
+				// Invoke the superclass to handle it.
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void confirmDeleteMedication()
+	{
+		// 1. Instantiate an AlertDialog.Builder with its constructor
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		// 2. Chain together various setter methods to set the dialog characteristics
+		builder.setMessage(R.string.dialog_confirm_delete_medication_prompt)
+				.setTitle(R.string.dialog_confirm_delete_medication_title);
+
+		// Add the buttons
+		builder.setPositiveButton(R.string.dialog_confirm_delete_medication_yes,
+				new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{
+				// User clicked OK button
+				deleteMedication();
+			}
+		});
+
+		builder.setNegativeButton(R.string.dialog_confirm_delete_medication_cancel,
+				new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{
+				// User cancelled the dialog
+			}
+		});
+
+		// 3. Get the AlertDialog from create()
+		AlertDialog dialog = builder.create();
+
+		dialog.show();
 	}
 
 	private void handleExtras(Bundle extras)
@@ -425,15 +514,18 @@ public class AddMedicationActivity extends AppCompatActivity
 				osw.flush();
 				osw.close();
 
-			} catch (JSONException e)
+			}
+			catch (JSONException e)
 			{
 				e.printStackTrace();
 				return false;
-			} catch (UnsupportedEncodingException e)
+			}
+			catch (UnsupportedEncodingException e)
 			{
 				e.printStackTrace();
 				return false;
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 				return false;
@@ -448,7 +540,8 @@ public class AddMedicationActivity extends AppCompatActivity
 			{
 				m_response = convertToString(in);
 				return true;
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
@@ -613,6 +706,7 @@ public class AddMedicationActivity extends AppCompatActivity
 				m_productDescriptionAdapter.notifyDataSetChanged();
 
 				//TODO: Show the add medication form.
+
 			}
 			else
 			{
@@ -647,7 +741,8 @@ public class AddMedicationActivity extends AppCompatActivity
 		//Reminder date.
 		if (reminderDate.length() == 0)
 		{
-			System.out.println("Reminder date was not given.");
+			m_reminderDateView.setError("Reminder date was not given.");
+			m_reminderDateView.requestFocus();
 			return false;
 		}
 
@@ -656,14 +751,17 @@ public class AddMedicationActivity extends AppCompatActivity
 		boolean matched = match.matches();
 		if (!matched)
 		{
-			System.out.println("Reminder date was not written in the correct format.");
+			m_reminderDateView.setError("Reminder date was not written in the correct format.");
+			m_reminderDateView.requestFocus();
 			return false;
 		}
 
 		//Reminder time.
 		if (reminderTime.length() == 0)
 		{
-			System.out.println("Reminder time was not given.");
+			m_reminderTimeView.setError("Reminder time was not given.");
+			m_reminderTimeView.requestFocus();
+
 			return false;
 		}
 
@@ -677,35 +775,45 @@ public class AddMedicationActivity extends AppCompatActivity
 
 			if (hours > 24 || hours < 0)
 			{
-				System.out.println("Reminder time hour value is invalid.");
+				m_reminderTimeView.setError("Reminder time hour value is not valid.");
+				m_reminderTimeView.requestFocus();
+
 				return false;
 			}
 
 			if (minutes < 0 || minutes > 60)
 			{
-				System.out.println("Reminder time minutes value is invalid.");
+				m_reminderTimeView.setError("Reminder time minutes value is not valid.");
+				m_reminderTimeView.requestFocus();
+
 				return false;
 			}
 		}
 		else
 		{
-			System.out.println("Reminder time was not written in the correct format.");
+			m_reminderTimeView.setError("Reminder time was not written in the correct format.");
+			m_reminderTimeView.requestFocus();
+
 			return false;
 		}
 
 		//Items to take.
 		if (toTake < TO_TAKE_MIN || toTake > TO_TAKE_MAX)
 		{
-			System.out.println("Number of items to take must be more than 0 and less than " +
+			m_toTakeView.setError("Number of items to take must be more than 0 and less than " +
 					TO_TAKE_MAX + ".");
+			m_toTakeView.requestFocus();
+
 			return false;
 		}
 
 		//Items remaining.
 		if (toRemaining < 0 || toRemaining < toTake || toRemaining > TO_REMAINING_MAX)
 		{
-			System.out.println("Number of items remaining must be more than 0 and less than " +
+			m_toRemainingView.setError("Number of items remaining must be more than 0 and less than " +
 					TO_REMAINING_MAX + " and greater than the number of items to take.");
+			m_toRemainingView.requestFocus();
+
 			return false;
 		}
 
@@ -713,8 +821,10 @@ public class AddMedicationActivity extends AppCompatActivity
 		int nicknameLength = nickname.length();
 		if (nicknameLength < NICKNAME_MIN || nicknameLength > NICKNAME_MAX)
 		{
-			System.out.println("Nickname length must be greater than " +
+			m_nicknameView.setError("Nickname length must be greater than " +
 					NICKNAME_MIN + " and less than " + NICKNAME_MAX + ".");
+			m_nicknameView.requestFocus();
+
 			return false;
 		}
 
@@ -725,8 +835,10 @@ public class AddMedicationActivity extends AppCompatActivity
 				repeatSelect.compareTo("weekly") != 0 &&
 				repeatSelect.compareTo("custom") != 0)
 		{
+			//TODO: User feedback.
 			System.out.println(repeatSelect);
 			System.out.println("Unknown repeat value given.");
+
 			return false;
 		}
 
@@ -771,47 +883,15 @@ public class AddMedicationActivity extends AppCompatActivity
 		return result;
 	}
 
-	public void addMedication()
+	public void deleteMedication()
 	{
-		if (m_addMedicationTask != null)
+		if (m_deleteMedicationTask != null)
 		{
 			return;
 		}
 
 		//Reset errors.
-		m_toTakeView.setError(null);
-		m_toRemainingView.setError(null);
-
-		//Get values.
-		//TODO: Lookup the product id based on product name.
-		int idArrayIndex = m_productSelectView.getSelectedItemPosition();
-		int productSelect =  m_productIDItems[idArrayIndex];
-
-		String reminderDate = m_reminderDateView.getText().toString();
-		String reminderTime = m_reminderTimeView.getText().toString();
-		String repeatSelect = m_repeatSelectView.getSelectedItem().toString().toLowerCase();
-
-		String repeatCustom = m_repeatCustomView.getText().toString();
-		int toTake = getNumberFromInput(m_toTakeView.getText().toString());
-		if (toTake == -1)
-		{
-			m_toTakeView.setError("Items to take is blank, not a number.");
-			return;
-		}
-		int toRemaining = getNumberFromInput(m_toRemainingView.getText().toString());
-		if (toRemaining == -1)
-		{
-			m_toRemainingView.setError("Items remaining is blank or not a number.");
-			return;
-		}
-		String nickname = m_nicknameView.getText().toString();
-
-		//TODO: Input validation.
-		if (!addMedicationValidation(productSelect, reminderDate,
-				reminderTime, repeatSelect, repeatCustom, toTake, toRemaining, nickname))
-		{
-			return;
-		}
+		//m_firstNameEdit.setError(null);
 
 		boolean cancel = false;
 		View focusView = m_addMedicationFormView;
@@ -841,6 +921,127 @@ public class AddMedicationActivity extends AppCompatActivity
 			//Show the progress spinner...
 			showProgress(true);
 
+			//Get mobile token from application storage.
+			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
+
+			//Create and run an auth task in the background.
+			m_deleteMedicationTask = new DeleteMedicationTask(mobileToken, m_medScheduleID);
+			m_deleteMedicationTask.setDelegate(new DeleteMedicationTask.AsyncResponse()
+			{
+				@Override
+				public void onPostExecute(boolean sendSucceeded, boolean taskSucceeded)
+				{
+					showProgress(false);
+
+					if (sendSucceeded)
+					{
+						//Request sent successfully.
+						if (taskSucceeded)
+						{
+							//Task successful.
+
+							//DEBUG:
+							System.out.println("Deleted medication schedule.");
+
+							goSchedule();
+						}
+						else
+						{
+							//Task failed.
+
+						}
+					}
+					else
+					{
+						//Failed to send request.
+
+					}
+
+					m_deleteMedicationTask = null;
+				}
+			});
+
+			m_deleteMedicationTask.execute((Void) null);
+		}
+	}
+
+	public void addMedication()
+	{
+		if (m_addMedicationTask != null)
+		{
+			return;
+		}
+
+		//Reset errors.
+		m_reminderDateView.setError(null);
+		m_reminderTimeView.setError(null);
+		m_toTakeView.setError(null);
+		m_toRemainingView.setError(null);
+		m_nicknameView.setError(null);
+
+		//Get values.
+		//TODO: Lookup the product id based on product name.
+		int idArrayIndex = m_productSelectView.getSelectedItemPosition();
+		int productSelect =  m_productIDItems[idArrayIndex];
+
+		String reminderDate = m_reminderDateView.getText().toString();
+		String reminderTime = m_reminderTimeView.getText().toString();
+		String repeatSelect = m_repeatSelectView.getSelectedItem().toString().toLowerCase();
+
+		String repeatCustom = m_repeatCustomView.getText().toString();
+		int toTake = getNumberFromInput(m_toTakeView.getText().toString());
+		if (toTake == -1)
+		{
+			m_toTakeView.setError("Items to take is blank or not a number.");
+			m_toTakeView.requestFocus();
+
+			return;
+		}
+		int toRemaining = getNumberFromInput(m_toRemainingView.getText().toString());
+		if (toRemaining == -1)
+		{
+			m_toRemainingView.setError("Items remaining is blank or not a number.");
+			m_toRemainingView.requestFocus();
+
+			return;
+		}
+		String nickname = m_nicknameView.getText().toString();
+
+		//TODO: Input validation.
+		if (!addMedicationValidation(productSelect, reminderDate,
+				reminderTime, repeatSelect, repeatCustom, toTake, toRemaining, nickname))
+		{
+			return;
+		}
+
+		boolean cancel = false;
+		View focusView = m_addMedicationFormView;
+
+		//Check internet connectivity.
+		ConnectivityManager connMgr = (ConnectivityManager)
+				getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+		if (networkInfo == null || !networkInfo.isConnected())
+		{
+			System.out.println("Not connected to the internet.");
+			cancel = true;
+		}
+
+		if (cancel)
+		{
+			System.out.println("Cancelling add medication request...");
+			//There was an error; don't attempt login and focus the first
+			//form field with an error.
+			focusView.requestFocus();
+		}
+		else
+		{
+			System.out.println("Connected to the internet.");
+
+			//Show the progress spinner...
+			showProgress(true);
+
 			//Create and run an auth task in the background.
 			m_addMedicationTask = new AddMedicationTask(productSelect, reminderDate,
 					reminderTime, repeatSelect, repeatCustom, toTake, toRemaining, nickname);
@@ -856,6 +1057,7 @@ public class AddMedicationActivity extends AppCompatActivity
 		private static final String PREFS_NAME = "TrackMyMedsPref";
 		private static final String LOGIN_URL = "https://trackmymeds.frb.io/med_add_mobile";
 
+		String m_errorMessage;
 		String m_response;
 		private JSONArray m_responseJSON;
 
@@ -872,6 +1074,7 @@ public class AddMedicationActivity extends AppCompatActivity
 						  String repeatSelect, String repeatCustom, int toTake,
 						  int toRemaining, String nickname)
 		{
+			m_errorMessage = "";
 			m_response = "";
 			m_responseJSON = null;
 
@@ -899,9 +1102,10 @@ public class AddMedicationActivity extends AppCompatActivity
 			{
 				JSONObject jsonAll = new JSONObject();
 
+				//TODO:
 				String authToken = getMobileToken();
 				JSONObject json = new JSONObject();
-				json.put("mobile_token", authToken);
+				json.put("mobile_token", "d37db33490d3d828e89e3447cbf0b2cb9cfa98a3931675e612aa9b4b81aa95d8e151e6f57d29601c765472f11d48371e5989b1a6998dc1796ea14adb84ab4ff8");
 				jsonAll.put("auth", json);
 
 				json = new JSONObject();
@@ -929,15 +1133,18 @@ public class AddMedicationActivity extends AppCompatActivity
 				osw.flush();
 				osw.close();
 
-			} catch (JSONException e)
+			}
+			catch (JSONException e)
 			{
 				e.printStackTrace();
 				return false;
-			} catch (UnsupportedEncodingException e)
+			}
+			catch (UnsupportedEncodingException e)
 			{
 				e.printStackTrace();
 				return false;
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 				return false;
@@ -952,7 +1159,8 @@ public class AddMedicationActivity extends AppCompatActivity
 			{
 				m_response = convertToString(in);
 				return true;
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
@@ -1035,6 +1243,7 @@ public class AddMedicationActivity extends AppCompatActivity
 						System.out.println("Add medication failed.");
 						System.out.println("ERROR CODE:");
 						System.out.println(auth.getString("error_code"));
+						m_errorMessage = auth.getString("error_message");
 
 						return false;
 					}
@@ -1081,6 +1290,7 @@ public class AddMedicationActivity extends AppCompatActivity
 				//Failed to delete account.
 				//m_passwordEditOne.setError(getString(R.string.error_incorrect_password));
 				//m_passwordEditOne.requestFocus();
+				m_reminderDateView.setError(m_errorMessage);
 			}
 		}
 

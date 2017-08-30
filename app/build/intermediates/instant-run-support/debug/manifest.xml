@@ -9,8 +9,6 @@
         android:targetSdkVersion="25" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -28,11 +26,6 @@
         <activity
             android:name="com.app.trackmymeds.LoginActivity"
             android:label="@string/activity_title_login" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.app.trackmymeds.SplashActivity"
@@ -52,7 +45,8 @@
             android:theme="@style/AppTheme.tmmNoActionBarDark" />
         <activity
             android:name="com.app.trackmymeds.AddMedicationActivity"
-            android:label="@string/activity_title_add_medication" />
+            android:label="@string/activity_title_add_medication"
+            android:theme="@style/AppTheme.tmmNoActionBarDark" />
         <activity
             android:name="com.app.trackmymeds.MedicationHistoryActivity"
             android:label="@string/activity_title_medication_history" />

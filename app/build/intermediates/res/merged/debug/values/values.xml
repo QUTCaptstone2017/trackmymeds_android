@@ -698,6 +698,8 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="action_change_account">Change Account</string>
+    <string name="action_delete_medication">Delete Medication</string>
     <string name="action_medication_history">Medication History</string>
     <string name="action_register">Create Account</string>
     <string name="action_settings">Settings</string>
@@ -742,6 +744,10 @@
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="checkbox_recurring">Recurring</string>
     <string name="delete_account_warning">If you delete your account all history and linking of the account will be removed.\n\nAre you sure you want to delete?</string>
+    <string name="dialog_confirm_delete_medication_cancel">Cancel</string>
+    <string name="dialog_confirm_delete_medication_prompt">Are you sure you want to delete this medication schedule?</string>
+    <string name="dialog_confirm_delete_medication_title">Delete Medication Schedule</string>
+    <string name="dialog_confirm_delete_medication_yes">Yes</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="error_field_required">This field is required</string>
@@ -751,6 +757,7 @@
     <string name="error_no_internet">Could not connect to the internet</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="medication_list_label_no_results">No results found.</string>
     <string name="password_toggle_content_description">Toggle password visibility</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
@@ -803,7 +810,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="colorAccent">@color/app_notif</item>
-        <item name="android:background">@color/app_bg_dark</item>
+        
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
@@ -2313,6 +2320,12 @@
     </style>
     <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="titleTextStyle">@style/ActionBarTitleText</item>
+        <item name="background">@color/app_bg_light</item>
+        <item name="android:background">@color/app_bg_light</item>
+        <item name="titleTextAppearance">@style/ActionBarTitleText</item>
+        <item name="android:textColorPrimary">@color/app_bg_light</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
     <style name="splashProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
 
@@ -2343,7 +2356,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHighlight">@android:color/white</item>
     </style>
-    <style name="tmmTextEdit">
+    <style name="tmmTextEdit" parent="Widget.AppCompat.EditText">
         <item name="android:ellipsize">start</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@android:color/transparent</item>

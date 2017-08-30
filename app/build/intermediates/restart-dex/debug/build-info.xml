@@ -6,22 +6,22 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1503045695838"
+    timestamp="1503985261948"
     token="-4079445275525278514"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="408" />
+        duration="558" />
     <task
         name="instant-run-dex"
-        duration="10" />
+        duration="11" />
     <task
         name="instant-run-transform"
-        duration="97" />
+        duration="28" />
     <task
         name="verifier"
-        duration="2" />
+        duration="3" />
 
     <artifact
         location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\reload-dex\debug\classes.dex"
@@ -29,14 +29,11 @@
 
     <build
         build-mode="FULL"
-        timestamp="1503015481472"
+        timestamp="1503965272126"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
-        <artifact
-            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
@@ -67,42 +64,56 @@
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1503028278136"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1503043429493"
+        timestamp="1503983063133"
         verifier="FIELD_ADDED" >
+        <artifact
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1503984384120"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1503043477384"
+        timestamp="1503984620286"
         verifier="COMPATIBLE" >
         <artifact
-            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\builds\debug\1503043477384\classes.dex"
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\builds\debug\1503984620286\classes.dex"
             type="RELOAD_DEX" />
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1503045635993"
+        timestamp="1503984732187"
         verifier="COMPATIBLE" >
         <artifact
-            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\builds\debug\1503045635993\classes.dex"
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\builds\debug\1503984732187\classes.dex"
             type="RELOAD_DEX" />
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1503045695838"
+        timestamp="1503984784425"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\builds\debug\1503984784425\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1503985261948"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\reload-dex\debug\classes.dex"

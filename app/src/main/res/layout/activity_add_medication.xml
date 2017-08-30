@@ -5,10 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.trackmymeds.AddMedicationActivity"
-    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@color/colorPrimaryDark">
     <!-- Last line is a hack to prevent immediate text edit focus -->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/add_med_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:theme="@style/tmmToolbar"
+        app:popupTheme="@style/tmmToolbar"
+        style="@style/tmmToolbar"
+        tools:ignore="UnusedAttribute"/>
 
     <ProgressBar
         android:id="@+id/add_medication_progress"

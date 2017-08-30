@@ -1,54 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/schedule_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context="com.app.trackmymeds.ScheduleActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/schedule_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:theme="@style/tmmToolbar"
-        app:popupTheme="@style/tmmToolbar"
-        style="@style/tmmToolbar" />
-
-    <ProgressBar
-        android:id="@+id/schedule_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
-    <RelativeLayout
-        android:id="@+id/schedule_form"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5sp">
+        android:orientation="vertical">
 
-        <ExpandableListView
-            android:id="@+id/list_view_medication_schedule"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/schedule_toolbar"
+            style="@style/tmmToolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:headerDividersEnabled="false" />
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:popupTheme="@style/tmmToolbar"
+            app:theme="@style/tmmToolbar"
+            tools:ignore="UnusedAttribute"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/button_add_medication"
+        <ProgressBar
+            android:id="@+id/schedule_progress"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end|bottom"
-            android:clickable="true"
-            app:backgroundTint="@color/app_notif"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/add_icon" />
-    </RelativeLayout>
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"/>
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/schedule_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_margin="5sp">
+
+            <ExpandableListView
+                android:id="@+id/list_view_medication_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:headerDividersEnabled="false"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/button_add_medication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end|bottom"
+                android:clickable="true"
+                app:backgroundTint="@color/app_notif"
+                app:fabSize="normal"
+                app:srcCompat="@drawable/add_icon"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -13,4 +13,9 @@
         android:title="@string/action_medication_history"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_change_account"
+        android:title="@string/action_change_account"
+        app:showAsAction="never" />
+
 </menu>

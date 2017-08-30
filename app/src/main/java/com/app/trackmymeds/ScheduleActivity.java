@@ -20,23 +20,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.support.design.widget.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +33,12 @@ import java.util.regex.Pattern;
 public class ScheduleActivity extends AppCompatActivity
 {
 	//Properties.
-	DailyScheduleTask m_dailyScheduleTask;
+	private static String m_targetURL = "https://trackmymeds.frb.io/get_daily_meds_mobile";
+	ScheduleTask m_dailyScheduleTask;
+
+	StorageManager m_storageManager;
+
+	Snackbar m_snackBar;
 
 	private View m_progressView;
 	private View m_scheduleFormView;
@@ -58,6 +52,8 @@ public class ScheduleActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
+
+		m_storageManager = new StorageManager();
 
 		Toolbar myToolbar = (Toolbar) findViewById(R.id.schedule_toolbar);
 		setSupportActionBar(myToolbar);
@@ -151,6 +147,10 @@ public class ScheduleActivity extends AppCompatActivity
 				goMedicationHistory();
 				return true;
 
+			case R.id.action_change_account:
+				logout();
+				return true;
+
 			default:
 				// If we got here, the user's action was not recognized.
 				// Invoke the superclass to handle it.
@@ -174,6 +174,18 @@ public class ScheduleActivity extends AppCompatActivity
 	{
 		Intent intent = new Intent(this, MedListActivity.class);
 		startActivity(intent);
+	}
+
+	public void logout()
+	{
+		//Replace mobile token with empty string.
+		m_storageManager.saveMobileToken(getApplicationContext(), "");
+
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
+
+		finish();
 	}
 
 	public ArrayList<ExpandListGroup> setStandardGroups()
@@ -405,7 +417,6 @@ public class ScheduleActivity extends AppCompatActivity
 		}
 	}
 
-
 	public void getDailySchedule()
 	{
 		if (m_dailyScheduleTask != null)
@@ -444,218 +455,66 @@ public class ScheduleActivity extends AppCompatActivity
 			//Show the progress spinner...
 			showProgress(true);
 
+			//Get mobile token from application storage.
+			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
+
 			//Create and run an auth task in the background.
-			m_dailyScheduleTask = new ScheduleActivity.DailyScheduleTask();
-			m_dailyScheduleTask.execute((Void) null);
-		}
-	}
-
-	/**
-	 * Represents an asynchronous daily schedule request.
-	 */
-	public class DailyScheduleTask extends AsyncTask<Void, Void, Boolean>
-	{
-
-		//TODO: Move this.
-		private static final String PREFS_NAME = "TrackMyMedsPref";
-
-		private static final String ROUTE_URL = "https://trackmymeds.frb.io/get_daily_meds_mobile";
-		private String m_response;
-		private JSONObject m_responseJSON;
-
-		DailyScheduleTask()
-		{
-			m_response = "";
-			m_responseJSON = null;
-		}
-
-		private String getMobileToken()
-		{
-			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-			String mobileToken = settings.getString("mobile_token", "");
-
-			return mobileToken;
-		}
-
-		private boolean writeStream(OutputStream out)
-		{
-			try
+			m_dailyScheduleTask = new ScheduleTask(m_targetURL, mobileToken);
+			m_dailyScheduleTask.setDelegate(new ScheduleTask.AsyncResponse()
 			{
-				JSONObject jsonAuth = new JSONObject();
-				JSONObject jsonDetails = new JSONObject();
-
-				String authToken = getMobileToken();
-				jsonDetails.put("mobile_token", authToken);
-				jsonAuth.put("auth", jsonDetails);
-
-				//DEBUG:
-				System.out.println("SENDING:");
-				System.out.println(jsonAuth.toString());
-
-				OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-				osw.write(jsonAuth.toString());
-				osw.flush();
-				osw.close();
-
-			} catch (JSONException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (UnsupportedEncodingException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		private boolean readStream(InputStream in)
-		{
-			try
-			{
-				m_response = convertToString(in);
-				return true;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-			return false;
-		}
-
-		private boolean authenticate()
-		{
-			try
-			{
-				URL url = new URL(ROUTE_URL);
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-				urlConnection.setDoInput(true);
-				urlConnection.setDoOutput(true);
-				urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-				//urlConnection.setChunkedStreamingMode(0);
-				urlConnection.setRequestMethod("POST");
-				urlConnection.connect();
-
-				OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-				if (!writeStream(out))
+				@Override
+				public void onPostExecute(boolean sendSucceeded, boolean taskSucceeded)
 				{
-					System.out.println("Problem with reading the output stream.");
-					return false;
-				}
+					showProgress(false);
 
-				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				if (!readStream(in))
-				{
-					System.out.println("Problem with reading the input stream.");
-					return false;
-				}
-
-				urlConnection.disconnect();
-
-			} catch (MalformedURLException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... params)
-		{
-			m_response = "";
-			if (authenticate())
-			{
-				//Successful login.
-				System.out.println("Successfully sent daily schedule request.");
-
-				//DEBUG:
-				System.out.println("RESPONSE: ");
-				System.out.println(m_response);
-
-				//Handle response.
-				try
-				{
-					JSONObject responseJSON = new JSONObject(m_response);
-					JSONObject auth = responseJSON.getJSONObject("auth");
-					boolean valid = auth.getBoolean("valid");
-					if (valid)
+					if (sendSucceeded)
 					{
-						m_responseJSON = responseJSON.getJSONObject("data");
-						System.out.println("Daily schedule request successful.");
-						return true;
+						//Request sent successfully.
+						if (taskSucceeded)
+						{
+							//Task successful.
+							ExpListItems = populateDailySchedule(m_dailyScheduleTask.m_responseJSON);
+							ExpAdapter = new ExpandListAdapter(ScheduleActivity.this, ExpListItems);
+							ExpandList.setAdapter(ExpAdapter);
+
+							//Expand all groups by default.
+							int groupCount = ExpAdapter.getGroupCount();
+							for (int i = 0; i < groupCount; i++)
+							{
+								ExpandList.expandGroup(i);
+							}
+						}
+						else
+						{
+							//Task failed.
+							final int snackBarDurationSeconds = 10;
+							String errorString = "Error (" + m_dailyScheduleTask.m_errorCode +
+									"): " + m_dailyScheduleTask.m_errorMessage;
+
+							m_snackBar = Snackbar.make(findViewById(R.id.schedule_layout),
+									errorString, snackBarDurationSeconds * 1000);
+
+							m_snackBar.show();
+						}
 					}
 					else
 					{
-						System.out.println("Registration failed.");
-						return false;
+						//Failed to send request.
+						final int snackBarDurationSeconds = 10;
+						String errorString = "Error (" + m_dailyScheduleTask.m_errorCode +
+								"): " + m_dailyScheduleTask.m_errorMessage;
+
+						m_snackBar = Snackbar.make(findViewById(R.id.schedule_layout),
+								errorString, snackBarDurationSeconds * 1000);
+
+						m_snackBar.show();
 					}
-				} catch (JSONException e)
-				{
-					e.printStackTrace();
-					return false;
+
+					m_dailyScheduleTask = null;
 				}
-			}
-			else
-			{
-				System.out.println("Failed to send daily schedule request.");
-				return false;
-			}
-		}
+			});
 
-		private String convertToString(InputStream is) throws IOException
-		{
-			BufferedReader r = new BufferedReader(new InputStreamReader(is));
-			StringBuilder total = new StringBuilder();
-			String line;
-			while ((line = r.readLine()) != null)
-			{
-				total.append(line);
-			}
-			return new String(total);
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success)
-		{
-			m_dailyScheduleTask = null;
-			showProgress(false);
-
-			if (success)
-			{
-				ExpListItems = populateDailySchedule(m_responseJSON);
-				ExpAdapter = new ExpandListAdapter(ScheduleActivity.this, ExpListItems);
-				ExpandList.setAdapter(ExpAdapter);
-
-				//Expand all groups by default.
-				int groupCount = ExpAdapter.getGroupCount();
-				for (int i = 0; i < groupCount; i++)
-				{
-					ExpandList.expandGroup(i);
-				}
-			}
-			else
-			{
-
-			}
-		}
-
-		@Override
-		protected void onCancelled()
-		{
-			m_dailyScheduleTask = null;
-			showProgress(false);
+			m_dailyScheduleTask.execute((Void) null);
 		}
 	}
 }

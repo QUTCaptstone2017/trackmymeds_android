@@ -54,6 +54,8 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 	private View m_progressView;
 	private ListView m_medListView;
 
+	private View m_noResultsLabel;
+
 	private ArrayAdapter<MedicationBrand> m_medListAdapter;
 	private ArrayList<MedicationBrand> m_medListItems;
 
@@ -68,6 +70,8 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 
 		m_medListView = (ListView) findViewById(R.id.med_list);
 		m_progressView = findViewById(R.id.med_list_progress);
+
+		m_noResultsLabel = findViewById(R.id.label_medication_list_no_results);
 
 		m_medListItems = new ArrayList<MedicationBrand>();
 		m_medListAdapter = new ArrayAdapter(MedListActivity.this, android.R.layout.simple_list_item_1, m_medListItems);
@@ -176,7 +180,7 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 		}
 
 		//Reset errors.
-		//m_firstNameEdit.setError(null);
+		m_noResultsLabel.setVisibility(View.GONE);
 
 		boolean cancel = false;
 		View focusView = m_medListView;
@@ -437,6 +441,12 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 			if (success)
 			{
 				m_medListItems = populateMedList(m_responseJSON);
+
+				if (m_medListItems.size() == 0)
+				{
+					m_noResultsLabel.setVisibility(View.VISIBLE);
+				}
+
 				m_medListAdapter.clear();
 				m_medListAdapter.addAll(m_medListItems);
 				m_medListAdapter.notifyDataSetChanged();

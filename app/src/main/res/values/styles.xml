@@ -28,6 +28,12 @@
 
     <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="titleTextStyle">@style/ActionBarTitleText</item>
+        <item name="background">@color/app_bg_light</item>
+        <item name="android:background">@color/app_bg_light</item>
+        <item name="titleTextAppearance">@style/ActionBarTitleText</item>
+        <item name="android:textColorPrimary">@color/app_bg_light</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="ActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
@@ -58,7 +64,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="colorAccent">@color/app_notif</item>
-        <item name="android:background">@color/app_bg_dark</item>
+        <!-- <item name="android:background">@color/app_bg_dark</item> -->
     </style>
 
     <!-- Splash screen theme -->
@@ -81,7 +87,7 @@
         <item name="android:layout_margin">5dp</item>
     </style>
 
-    <style name="tmmTextEdit">
+    <style name="tmmTextEdit" parent="Widget.AppCompat.EditText">
         <item name="android:ellipsize">start</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@android:color/transparent</item>
