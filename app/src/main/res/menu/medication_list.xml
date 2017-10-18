@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_action_search"
+        android:title="Search"
+        android:icon="@drawable/search_icon"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView">
+    </item>
+    <item
+        android:id="@+id/menu_action_letter_filter"
+        android:icon="@drawable/letter_filter_icon"
+        android:title="Letter Filter"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/letter_filter_a"
+                android:title="A" />
+            <item
+                android:id="@+id/letter_filter_b"
+                android:title="B" />
+            <item
+                android:id="@+id/letter_filter_c"
+                android:title="C" />
+            <item
+                android:id="@+id/letter_filter_d"
+                android:title="D" />
+            <item
+                android:id="@+id/letter_filter_e"
+                android:title="E" />
+            <item
+                android:id="@+id/letter_filter_f"
+                android:title="F" />
+            <item
+                android:id="@+id/letter_filter_g"
+                android:title="G" />
+            <item
+                android:id="@+id/letter_filter_h"
+                android:title="H" />
+            <item
+                android:id="@+id/letter_filter_i"
+                android:title="I" />
+            <item
+                android:id="@+id/letter_filter_j"
+                android:title="J" />
+            <item
+                android:id="@+id/letter_filter_k"
+                android:title="K" />
+            <item
+                android:id="@+id/letter_filter_l"
+                android:title="L" />
+            <item
+                android:id="@+id/letter_filter_m"
+                android:title="M" />
+            <item
+                android:id="@+id/letter_filter_n"
+                android:title="N" />
+            <item
+                android:id="@+id/letter_filter_o"
+                android:title="O" />
+            <item
+                android:id="@+id/letter_filter_p"
+                android:title="P" />
+            <item
+                android:id="@+id/letter_filter_q"
+                android:title="Q" />
+            <item
+                android:id="@+id/letter_filter_r"
+                android:title="R" />
+            <item
+                android:id="@+id/letter_filter_s"
+                android:title="S" />
+            <item
+                android:id="@+id/letter_filter_t"
+                android:title="T" />
+            <item
+                android:id="@+id/letter_filter_u"
+                android:title="U" />
+            <item
+                android:id="@+id/letter_filter_v"
+                android:title="V" />
+            <item
+                android:id="@+id/letter_filter_w"
+                android:title="W" />
+            <item
+                android:id="@+id/letter_filter_x"
+                android:title="X" />
+            <item
+                android:id="@+id/letter_filter_y"
+                android:title="Y" />
+            <item
+                android:id="@+id/letter_filter_z"
+                android:title="Z" />
+        </menu>
+    </item>
+
+</menu>

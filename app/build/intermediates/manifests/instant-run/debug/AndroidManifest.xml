@@ -48,8 +48,12 @@
             android:label="@string/activity_title_add_medication"
             android:theme="@style/AppTheme.tmmNoActionBarDark" />
         <activity
-            android:name="com.app.trackmymeds.MedicationHistoryActivity"
-            android:label="@string/activity_title_medication_history" />
+            android:name="com.app.trackmymeds.ViewScheduleActivity"
+            android:label="@string/activity_title_view_schedule"
+            android:theme="@style/AppTheme.tmmNoActionBarDark" />
+        <activity
+            android:name="com.app.trackmymeds.ViewScheduleItemActivity"
+            android:label="@string/activity_title_view_schedule_item" />
         <activity
             android:name="com.app.trackmymeds.MedListActivity"
             android:label="@string/activity_title_med_list"

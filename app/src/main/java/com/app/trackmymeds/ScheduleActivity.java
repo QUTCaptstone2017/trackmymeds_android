@@ -5,10 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.support.design.widget.Snackbar;
@@ -82,43 +79,41 @@ public class ScheduleActivity extends AppCompatActivity
 			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
 			{
 				//Only interested in editing if the user clicked a schedule and not a daily item.
-				if (groupPosition != 2)
+				if (groupPosition < 2)
 				{
-					return false;
+					//Clicked on a schedule item.
+
+					ExpandListChild child = ExpListItems.get(groupPosition).getItems().get(childPosition);
+
+					System.out.println("Schedule item clicked!");
+					System.out.println(child.getJSON().toString());
+					JSONObject json = child.getJSON();
+
+					Intent intent = new Intent(getBaseContext(), ViewScheduleItemActivity.class);
+					intent.putExtra("EXTRA_SCHEDULE_ITEM_JSON", json.toString());
+
+					startActivity(intent);
+
+					return true;
 				}
-
-				ExpandListChild child = ExpListItems.get(groupPosition).getItems().get(childPosition);
-
-				System.out.println("Item Clicked!");
-				System.out.println(child.getJSON().toString());
-				JSONObject json = child.getJSON();
-
-				Intent intent = new Intent(getBaseContext(), AddMedicationActivity.class);
-				intent.putExtra("EXTRA_MED_ADD_TYPE", "edit");
-
-				try
+				else
 				{
-					//TODO: Don't need brand ID.
-					intent.putExtra("EXTRA_MED_SCHEDULE_ID", json.getInt("med_schedule_id"));
-					intent.putExtra("EXTRA_BRAND_ID", 0);
-					intent.putExtra("EXTRA_BRAND_NAME", json.getString("name"));
-					intent.putExtra("EXTRA_PRODUCT_ID", Integer.parseInt(json.getString("product_id")));
-					intent.putExtra("EXTRA_PRODUCT_DESCRIPTION", json.getString("description"));
-					intent.putExtra("EXTRA_TIME_TO_TAKE", json.getString("time_to_take"));
-					intent.putExtra("EXTRA_DATE_TO_TAKE", json.getString("date_to_take"));
-					intent.putExtra("EXTRA_REPEAT_CUSTOM", json.getInt("day_interval"));
-					intent.putExtra("EXTRA_TO_TAKE", Integer.parseInt(json.getString("dosage")));
-					intent.putExtra("EXTRA_TO_REMAINING", Integer.parseInt(json.getString("pack_remaining")));
-					intent.putExtra("EXTRA_NICKNAME", json.getString("nickname"));
-				}
-				catch (JSONException e)
-				{
-					e.printStackTrace();
-				}
+					//Clicked on a schedule.
 
-				startActivity(intent);
+					ExpandListChild child = ExpListItems.get(groupPosition).getItems().get(childPosition);
 
-				return true;
+					System.out.println("Schedule clicked!");
+					System.out.println(child.getJSON().toString());
+					JSONObject json = child.getJSON();
+
+					Intent intent = new Intent(getBaseContext(), ViewScheduleActivity.class);
+					intent.putExtra("EXTRA_MED_ADD_TYPE", "edit");
+					intent.putExtra("EXTRA_SCHEDULE_JSON", json.toString());
+
+					startActivity(intent);
+
+					return true;
+				}
 			}
 		});
 
@@ -139,29 +134,19 @@ public class ScheduleActivity extends AppCompatActivity
 	{
 		switch (item.getItemId())
 		{
-			case R.id.action_settings:
+			case R.id.action_delete_account:
 				goDeleteAccount();
-				return true;
-
-			case R.id.action_medication_history:
-				goMedicationHistory();
 				return true;
 
 			case R.id.action_change_account:
 				logout();
-				return true;
+			return true;
 
+			//If we got here, the user's action was not recognized.
+			//Invoke the superclass to handle it.
 			default:
-				// If we got here, the user's action was not recognized.
-				// Invoke the superclass to handle it.
-				return super.onOptionsItemSelected(item);
+			return super.onOptionsItemSelected(item);
 		}
-	}
-
-	public void goMedicationHistory()
-	{
-		Intent intent = new Intent(this, MedicationHistoryActivity.class);
-		startActivity(intent);
 	}
 
 	public void goDeleteAccount()
@@ -205,93 +190,31 @@ public class ScheduleActivity extends AppCompatActivity
 		return resultList;
 	}
 
-	private ExpandListChild makeMedicationItem(JSONObject row)
+	private ExpandListChild makeMedicationSchedule(JSONObject row)
 	{
-		try
-		{
-			int id = row.getInt("id");
-			int medScheduleID = row.getInt("med_schedule_id");
-			String dateToTake = row.getString("date_to_take");
-			String timeToTake = row.getString("time_to_take");
-			String nickname = row.getString("nickname");
-			String name = row.getString("name");
-			String description = row.getString("description");
-			int dosage = row.getInt("dosage");
-			int isTaken = row.getInt("is_taken");
-			int isDismissed = row.getInt("is_dismissed");
+		MedicationSchedule item = new MedicationSchedule();
+		item.Initialize(row);
 
-			String itemString = "ID: " + String.valueOf(id) + "\n" +
-					"Med Schedule ID: " + String.valueOf(medScheduleID) + "\n" +
-					"Date To Take: " + dateToTake + "\n" +
-					"Time To Take: " + timeToTake + "\n" +
-					"Nickname: " + nickname + "\n" +
-					"Name: " + name + "\n" +
-					"Description: " + description + "\n" +
-					"Dosage: " + String.valueOf(dosage) + "\n" +
-					"Is Taken: " + String.valueOf(isTaken) + "\n" +
-					"Is Dismissed: " + String.valueOf(isDismissed);
+		ExpandListChild child = new ExpandListChild();
+		child.setName(item.toDisplayString());
+		child.setJSON(row);
+		child.setTag(null);
 
-			ExpandListChild child = new ExpandListChild();
-			child.setName(itemString);
-			child.setJSON(row);
-			child.setTag(null);
-
-			return child;
-		} catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
-
-		return null;
+		return child;
 	}
 
 	private ExpandListChild makeMedicationScheduleItem(JSONObject row)
 	{
-		try
-		{
-			int id = row.getInt("id");
-			int productID = row.getInt("product_id");
-			int toTake = row.getInt("dosage");
-			int toRemaining = row.getInt("pack_remaining");
-			int repeatCustom = row.getInt("day_interval");
-			String timeToTake = row.getString("time_to_take");
-			String nickname = row.getString("nickname");
 
-			//Need to get timeToTake in a HH:MM format.
-			Pattern pattern = Pattern.compile("^(\\d{2}:\\d{2}):\\d{2}$");
-			Matcher match = pattern.matcher(timeToTake);
-			boolean matched = match.matches();
-			if (matched)
-			{
-				timeToTake = match.group(1);
-				row.remove("time_to_take");
-				row.put("time_to_take", timeToTake);
-			}
-			else
-			{
-				System.out.println("Regex for timeToTake failed!.");
-			}
+		MedicationScheduleItem item = new MedicationScheduleItem();
+		item.Initialize(row);
 
-			String itemString = "ID: " + String.valueOf(id) + "\n" +
-					"Product ID: " + String.valueOf(productID) + "\n" +
-					"Items To Take: " + String.valueOf(toTake) + "\n" +
-					"Items Remaining: " + String.valueOf(toRemaining) + "\n" +
-					"Repeat Custom: " + String.valueOf(repeatCustom) + "\n" +
-					"Time To Take: " + timeToTake + "\n" +
-					"Nickname: " + nickname;
+		ExpandListChild child = new ExpandListChild();
+		child.setName(item.toDisplayString());
+		child.setJSON(row);
+		child.setTag(null);
 
-			ExpandListChild child = new ExpandListChild();
-			child.setName(itemString);
-			child.setJSON(row);
-			child.setTag(null);
-
-			return child;
-		} catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
-
-		return null;
+		return child;
 	}
 
 	public ArrayList<ExpandListGroup> populateDailySchedule(JSONObject responseJSON)
@@ -312,7 +235,7 @@ public class ScheduleActivity extends AppCompatActivity
 			for (int i = 0; i < morningMeds.length(); i++)
 			{
 				JSONObject row = morningMeds.getJSONObject(i);
-				ExpandListChild child = makeMedicationItem(row);
+				ExpandListChild child = makeMedicationScheduleItem(row);
 				child.setJSON(row);
 
 				if (child != null)
@@ -331,7 +254,7 @@ public class ScheduleActivity extends AppCompatActivity
 			for (int i = 0; i < afternoonMeds.length(); i++)
 			{
 				JSONObject row = afternoonMeds.getJSONObject(i);
-				ExpandListChild child = makeMedicationItem(row);
+				ExpandListChild child = makeMedicationScheduleItem(row);
 
 				if (child != null)
 				{
@@ -350,7 +273,7 @@ public class ScheduleActivity extends AppCompatActivity
 			for (int i = 0; i < medicationSchedules.length(); i++)
 			{
 				JSONObject row = medicationSchedules.getJSONObject(i);
-				ExpandListChild child = makeMedicationScheduleItem(row);
+				ExpandListChild child = makeMedicationSchedule(row);
 
 				if (child != null)
 				{

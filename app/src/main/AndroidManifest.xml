@@ -37,8 +37,12 @@
             android:theme="@style/AppTheme.tmmNoActionBarDark"
             android:label="@string/activity_title_add_medication" />
         <activity
-            android:name=".MedicationHistoryActivity"
-            android:label="@string/activity_title_medication_history" />
+            android:name=".ViewScheduleActivity"
+            android:theme="@style/AppTheme.tmmNoActionBarDark"
+            android:label="@string/activity_title_view_schedule" />
+        <activity
+            android:name=".ViewScheduleItemActivity"
+            android:label="@string/activity_title_view_schedule_item" />
         <activity
             android:name=".MedListActivity"
             android:theme="@style/AppTheme.tmmNoActionBarDark"

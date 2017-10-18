@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeActionLabel="@string/button_login"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -70,14 +70,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/button_sign_in"
+                android:id="@+id/button_login"
                 style="@style/tmmButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in_short"
+                android:text="@string/button_login"
                 android:textAlignment="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/button_register"
@@ -85,17 +85,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_register"
-                android:textStyle="bold" />
+                android:text="@string/button_register"
+                android:textStyle="bold"/>
 
             <Button
-                android:id="@+id/button_sign_in_fb"
+                android:id="@+id/button_login_fb"
                 style="@style/tmmButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in_fb"
-                android:textStyle="bold" />
+                android:text="@string/button_login_fb"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>

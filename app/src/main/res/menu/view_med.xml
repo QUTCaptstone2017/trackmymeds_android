@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_delete_medication"
-        android:title="@string/action_delete_medication"
+        android:id="@+id/menu_action_delete_medication"
+        android:title="@string/menu_action_delete_medication"
         android:icon="@drawable/delete_icon"
         app:showAsAction="always" />
 </menu>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/view_medication_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimaryDark"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              tools:context="com.app.trackmymeds.AddMedicationActivity">
+    <!-- Last line is a hack to prevent immediate text edit focus -->
+
+    <ProgressBar
+        android:id="@+id/view_medication_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.64"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/view_medication_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/view_schedule_item_label_schedule_item_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_schedule_item_details"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/button_take_medication"
+                style="@style/tmmButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_take_medication"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

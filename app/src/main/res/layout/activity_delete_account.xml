@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="0.06"
-            android:text="@string/delete_account_warning"
+            android:text="@string/dialog_delete_account_warning"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white"

@@ -3,18 +3,16 @@ package com.app.trackmymeds;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,18 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -67,6 +53,8 @@ public class AddMedicationActivity extends AppCompatActivity
 
 	StorageManager m_storageManager;
 
+	Snackbar m_snackBar;
+
 	String m_medAddType;
 	int m_medScheduleID;
 
@@ -80,6 +68,8 @@ public class AddMedicationActivity extends AppCompatActivity
 	TextView m_toTakeView;
 	TextView m_toRemainingView;
 	TextView m_nicknameView;
+
+	Button m_addMedButton;
 
 	View m_progressView;
 	View m_addMedicationFormView;
@@ -108,7 +98,7 @@ public class AddMedicationActivity extends AppCompatActivity
 
 		m_storageManager = new StorageManager();
 
-		Toolbar myToolbar = (Toolbar) findViewById(R.id.add_med_toolbar);
+		Toolbar myToolbar = (Toolbar) findViewById(R.id.add_medication_toolbar);
 		setSupportActionBar(myToolbar);
 
 		m_progressView = findViewById(R.id.add_medication_progress);
@@ -116,17 +106,17 @@ public class AddMedicationActivity extends AppCompatActivity
 
 		m_medAddType = "";
 
-		m_productSelectView = (Spinner)findViewById(R.id.add_medication_spinner_product);
+		m_productSelectView = (Spinner)findViewById(R.id.add_medication_spinner_products);
 		m_reminderDateView = (TextView)findViewById(R.id.add_medication_edit_text_date);
 		m_reminderTimeView = (TextView)findViewById(R.id.add_medication_edit_text_time);
 		m_repeatSelectView = (Spinner)findViewById(R.id.add_medication_spinner_repeat);
 		m_repeatCustomLayout = (TextInputLayout) findViewById(R.id.add_medication_text_layout_repeat_custom);
 		m_repeatCustomView = (TextView)findViewById(R.id.add_medication_edit_text_repeat_custom);
-		m_toTakeView = (TextView)findViewById(R.id.add_medication_edit_text_to_take);
+		m_toTakeView = (TextView)findViewById(R.id.add_medication_edit_text_items_to_take);
 		m_toRemainingView = (TextView)findViewById(R.id.add_medication_edit_text_to_remaining);
 		m_nicknameView = (TextView)findViewById(R.id.add_medication_edit_text_nickname);
 
-		m_brandNameView = (TextView)findViewById(R.id.brand_name_value);
+		m_brandNameView = (TextView)findViewById(R.id.add_medication_value_brand_name);
 		m_brandNameView.setText(m_brandName);
 
 		//Product spinner.
@@ -135,12 +125,13 @@ public class AddMedicationActivity extends AppCompatActivity
 		m_productSelectView.setAdapter(m_productDescriptionAdapter);
 
 		//Repeat spinner.
-		m_repeatItems = new ArrayList<String>(Arrays.asList(this.getResources().getStringArray(R.array.add_medication_repeat)));
+		m_repeatItems = new ArrayList<String>(Arrays.asList(this.getResources().getStringArray(R.array.options_repeat)));
 		m_repeatAdapter = new ArrayAdapter(this, R.layout.spinner_item, m_repeatItems);
 		m_repeatSelectView.setAdapter(m_repeatAdapter);
 
-		ImageButton addMedButton = (ImageButton) findViewById(R.id.button_add_medication);
-		addMedButton.setOnClickListener(new View.OnClickListener()
+		//Bind click event to add medication button.
+		m_addMedButton = (Button)findViewById(R.id.add_medication_button_add_medication);
+		m_addMedButton.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View view)
@@ -149,13 +140,16 @@ public class AddMedicationActivity extends AppCompatActivity
 			}
 		});
 
+		//Bind item selection event to product description spinner.
 		m_productSelectView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View v, int position, long id)
 			{
+				//Get the selected product description.
 				String productDescription = (String)adapter.getItemAtPosition(position);
 
+				//DEBUG:
 				System.out.println("Item selected!");
 				System.out.println(productDescription);
 
@@ -169,33 +163,45 @@ public class AddMedicationActivity extends AppCompatActivity
 			}
 		});
 
+		//Bind item selection event to schedule repeat type spinner.
 		m_repeatSelectView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View v, int position, long id)
 			{
+				//Get the repeat type string.
 				String repeatValue = (String)adapter.getItemAtPosition(position);
 
+				//DEBUG:
 				System.out.println("Repeat item selected!");
 				System.out.println(repeatValue);
 
+				//Special case for custom repeat type:
 				if (repeatValue.toLowerCase().compareTo("custom") == 0)
 				{
+					//Show custom interval input.
 					m_repeatCustomLayout.setVisibility(View.VISIBLE);
+
+					//DEBUG:
 					System.out.println("Showing!");
 				}
 				else
 				{
+					//Hide custom interval input.
 					m_repeatCustomLayout.setVisibility(View.GONE);
+
+					//DEBUG:
 					System.out.println("Hiding!");
 				}
 
+				//Tell the UI thread this element has changed.
 				m_repeatAdapter.notifyDataSetChanged();
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent)
 			{
+				//DEBUG:
 				System.out.println("Nothing selected.");
 			}
 		});
@@ -206,28 +212,152 @@ public class AddMedicationActivity extends AppCompatActivity
 		handleExtras(extras);
 	}
 
+	private void handleExtras(Bundle extras)
+	{
+		//Get details for editing an existing schedule.
+		m_medAddType = extras.getString("EXTRA_MED_ADD_TYPE");
+		if (m_medAddType.compareTo("add") == 0)
+		{
+			String brandJSONString = extras.getString("EXTRA_BRAND_JSON");
+
+			if (brandJSONString != null)
+			{
+				System.out.println("brandJSONString");
+				System.out.println(brandJSONString);
+
+				try
+				{
+					JSONObject brandJSON = new JSONObject(brandJSONString);
+					MedicationBrand brand = new MedicationBrand();
+
+					if (brand.Initialize(brandJSON))
+					{
+						//Always get these details.
+						m_brandID = brand.m_id;
+						m_brandSupplierID = brand.m_supplierID;
+						m_brandName = brand.m_name;
+
+						m_brandNameView.setText(brand.m_name);
+
+						//DEBUG:
+						System.out.println("m_brandID");
+						System.out.println(m_brandID);
+
+						System.out.println("m_brandSupplierID");
+						System.out.println(m_brandSupplierID);
+
+						System.out.println("m_brandName");
+						System.out.println(m_brandName);
+					}
+				}
+				catch (JSONException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+			//Get products.
+			getProducts();
+		}
+		else if (m_medAddType.compareTo("edit") == 0)
+		{
+			getSupportActionBar().setTitle("Edit Medication Schedule:");
+			m_addMedButton.setText(R.string.button_edit_medication);
+			String medScheduleJSONString = extras.getString("EXTRA_SCHEDULE_JSON");
+
+			if (medScheduleJSONString != null)
+			{
+				System.out.println("medScheduleJSONString");
+				System.out.println(medScheduleJSONString);
+
+				try
+				{
+					JSONObject scheduleJSON = new JSONObject(medScheduleJSONString);
+					MedicationSchedule schedule = new MedicationSchedule();
+
+					if (schedule.Initialize(scheduleJSON))
+					{
+						m_medScheduleID = schedule.m_id;
+						m_brandNameView.setText(schedule.m_brandName);
+						m_productIDItems = new int[1];
+						m_productIDItems[0] = schedule.m_productID;
+						m_productDescriptionItems.add(schedule.m_productDescription);
+						m_productDescriptionAdapter.notifyDataSetChanged();
+
+						//TODO:
+						String timeToTake = "";
+						Pattern pattern = Pattern.compile("^(\\d{2}):(\\d{2}):(\\d{2})$");
+						Matcher match = pattern.matcher(schedule.m_timeToTake);
+						boolean matched = match.matches();
+						if (matched)
+						{
+							timeToTake = match.group(1) + ":" + match.group(2);
+							m_reminderTimeView.setText(timeToTake);
+						}
+						else
+						{
+							//Failed to read.
+							System.out.println("Failed to parse TimeToTake.");
+						}
+
+						m_reminderDateView.setText(schedule.m_dateToTake);
+
+						switch (schedule.m_dayInterval)
+						{
+							//Never repeat.
+							case 0:
+								m_repeatSelectView.setSelection(0);
+							break;
+
+							//Daily.
+							case 1:
+								m_repeatSelectView.setSelection(1);
+							break;
+
+							//Weekly.
+							case 7:
+								m_repeatSelectView.setSelection(2);
+							break;
+
+							//Custom.
+							default:
+								m_repeatSelectView.setSelection(3);
+								m_repeatCustomView.setText(String.valueOf(schedule.m_dayInterval));
+							break;
+						}
+
+						m_toTakeView.setText(String.valueOf(schedule.m_toTake));
+						m_toRemainingView.setText(String.valueOf(schedule.m_toRemaining));
+						m_nicknameView.setText(schedule.m_nickname);
+
+						showProgress(false);
+					}
+				}
+				catch (JSONException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		else
+		{
+			System.out.println("Unknown EXTRA_MED_ADD_TYPE value.");
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.add_med, menu);
-
-		System.out.println(m_medAddType);
-		if (m_medAddType.compareTo("add") == 0)
-		{
-			System.out.println("Hiding delete button...");
-			menu.findItem(R.id.action_delete_medication).setVisible(false);
-		}
-
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+		//Handle the selection of our menu items here.
 		switch (item.getItemId())
 		{
-			case R.id.action_delete_medication:
+			case R.id.menu_action_delete_medication:
 				confirmDeleteMedication();
 			return true;
 
@@ -240,20 +370,20 @@ public class AddMedicationActivity extends AppCompatActivity
 
 	public void confirmDeleteMedication()
 	{
-		// 1. Instantiate an AlertDialog.Builder with its constructor
+		//Instantiate an AlertDialog.Builder with its constructor
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-		// 2. Chain together various setter methods to set the dialog characteristics
+		//Set the dialog values.
 		builder.setMessage(R.string.dialog_confirm_delete_medication_prompt)
 				.setTitle(R.string.dialog_confirm_delete_medication_title);
 
-		// Add the buttons
+		//Add buttons.
 		builder.setPositiveButton(R.string.dialog_confirm_delete_medication_yes,
 				new DialogInterface.OnClickListener()
 		{
 			public void onClick(DialogInterface dialog, int id)
 			{
-				// User clicked OK button
+				//User clicked the yes button
 				deleteMedication();
 			}
 		});
@@ -263,112 +393,35 @@ public class AddMedicationActivity extends AppCompatActivity
 		{
 			public void onClick(DialogInterface dialog, int id)
 			{
-				// User cancelled the dialog
+				//User cancelled the dialog.
 			}
 		});
 
-		// 3. Get the AlertDialog from create()
+		//Create the AlertDialog object.
 		AlertDialog dialog = builder.create();
 
+		//Show it to the user.
 		dialog.show();
 	}
 
-	private void handleExtras(Bundle extras)
-	{
-		//Always get these details.
-		m_brandID = (int)extras.getInt("EXTRA_BRAND_ID");
-		m_brandSupplierID = (int)extras.getInt("EXTRA_BRAND_SUPPLIER_ID");
-		m_brandName = (String)extras.getString("EXTRA_BRAND_NAME");
-
-		System.out.println("m_brandID");
-		System.out.println(m_brandID);
-
-		System.out.println("m_brandSupplierID");
-		System.out.println(m_brandSupplierID);
-
-		System.out.println("m_brandName");
-		System.out.println(m_brandName);
-
-		//Get details for editing an existing schedule.
-		m_medAddType = extras.getString("EXTRA_MED_ADD_TYPE");
-		if (m_medAddType.compareTo("edit") == 0)
-		{
-			getSupportActionBar().setTitle("Edit Medication Schedule");
-
-			//EXTRA_MED_SCHEDULE_ID
-			int medScheduleID = extras.getInt("EXTRA_MED_SCHEDULE_ID");
-			String brandName = extras.getString("EXTRA_BRAND_NAME");
-			int productID = extras.getInt("EXTRA_PRODUCT_ID");
-			String productDescription = extras.getString("EXTRA_PRODUCT_DESCRIPTION");
-			String timeToTake = extras.getString("EXTRA_TIME_TO_TAKE");
-			String dateToTake = extras.getString("EXTRA_DATE_TO_TAKE");
-			int repeatCustom = extras.getInt("EXTRA_REPEAT_CUSTOM");
-			int toTake = extras.getInt("EXTRA_TO_TAKE");
-			int toRemaining = extras.getInt("EXTRA_TO_REMAINING");
-			String nickname = extras.getString("EXTRA_NICKNAME");
-
-			m_medScheduleID = medScheduleID;
-			m_brandNameView.setText(brandName);
-			m_productIDItems = new int[1];
-			m_productIDItems[0] = productID;
-			m_productDescriptionItems.add(productDescription);
-			m_productDescriptionAdapter.notifyDataSetChanged();
-			m_reminderTimeView.setText(timeToTake);
-			m_reminderDateView.setText(dateToTake);
-
-			switch (repeatCustom)
-			{
-				//Never repeat.
-				case 0:
-					m_repeatSelectView.setSelection(0);
-				break;
-
-				//Daily.
-				case 1:
-					m_repeatSelectView.setSelection(1);
-				break;
-
-				//Weekly.
-				case 7:
-					m_repeatSelectView.setSelection(2);
-				break;
-
-				//Custom.
-				default:
-					m_repeatSelectView.setSelection(3);
-					m_repeatCustomView.setText(String.valueOf(repeatCustom));
-				break;
-			}
-
-			m_toTakeView.setText(String.valueOf(toTake));
-			m_toRemainingView.setText(String.valueOf(toRemaining));
-			m_nicknameView.setText(nickname);
-
-			showProgress(false);
-		}
-		else
-		{
-			//Get products.
-			getProducts();
-		}
-	}
-
-	public void goSchedule()
+	public void goSchedule(boolean doClear)
 	{
 		Intent intent = new Intent(this, ScheduleActivity.class);
+
+		if (doClear)
+		{
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+		}
+
 		startActivity(intent);
 		finish();
 	}
 
-	/**
-	 * Shows the progress UI and hides the delete form.
-	 */
+	//Shows the progress bar and hides the delete form.
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show)
 	{
-		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-		// for very easy animations. If available, use these APIs to fade-in
-		// the progress spinner.
+		//If available, use recent APIs to fade-in the progress spinner.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2)
 		{
 			int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -397,11 +450,54 @@ public class AddMedicationActivity extends AppCompatActivity
 		}
 		else
 		{
-			// The ViewPropertyAnimator APIs are not available, so simply show
-			// and hide the relevant UI components.
+			//Just hide the relevant UI components.
 			m_progressView.setVisibility(show ? View.VISIBLE : View.GONE);
 			m_addMedicationFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}
+	}
+
+	public ArrayList<String> populateProductSpinner(JSONObject response)
+	{
+		ArrayList<String> resultList = new ArrayList<String>();
+
+		//DEBUG:
+		System.out.println("JSON: ");
+		System.out.println(response.toString());
+
+		try
+		{
+			//Convert JSON object to JSON array.
+			JSONArray data = response.getJSONArray("data");
+
+			m_productIDItems = new int[data.length()];
+			for (int i = 0; i < data.length(); i++)
+			{
+				try
+				{
+					JSONObject row = data.getJSONObject(i);
+					MedicationBrand brand = new MedicationBrand();
+
+					//TODO: Store product id.
+					//int productID = row.getInt("id");
+
+					String productDescription = row.getString("description");
+					m_productIDItems[i] = row.getInt("id");
+
+					resultList.add(productDescription);
+
+				} catch (JSONException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		catch (JSONException e)
+		{
+			//TODO: Show an error for the user.
+			e.printStackTrace();
+		}
+
+		return resultList;
 	}
 
 	public void getProducts()
@@ -410,9 +506,6 @@ public class AddMedicationActivity extends AppCompatActivity
 		{
 			return;
 		}
-
-		//Reset errors.
-		//m_firstNameEdit.setError(null);
 
 		//Get values.
 		int brandID = m_brandID;
@@ -447,280 +540,46 @@ public class AddMedicationActivity extends AppCompatActivity
 			//Show the progress spinner...
 			showProgress(true);
 
-			//Create and run a get products task in the background.
-			m_getProductsTask = new GetProductsTask(brandID);
-			m_getProductsTask.execute((Void) null);
-		}
-	}
+			//Get mobile token from application storage.
+			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
 
-	/**
-	 * Represents an asynchronous products with brand id request.
-	 */
-	public class GetProductsTask extends AsyncTask<Void, Void, Boolean>
-	{
-		private static final String PREFS_NAME = "TrackMyMedsPref";
-		private static final String LOGIN_URL = "https://trackmymeds.frb.io/med_products_json_mobile";
-
-		String m_response;
-		private JSONArray m_responseJSON;
-
-		private int m_brandID;
-
-		private int m_productID;
-		private String m_productDescription;
-
-		GetProductsTask(int brandID)
-		{
-			m_response = "";
-			m_responseJSON = null;
-
-			this.m_brandID = brandID;
-
-			m_productID = -1;
-			m_productDescription = "";
-		}
-
-		private String getMobileToken()
-		{
-			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-			String mobileToken = settings.getString("mobile_token", "");
-
-			return mobileToken;
-		}
-
-		private boolean writeStream(OutputStream out)
-		{
-			try
+			//Create and run an auth task in the background.
+			m_getProductsTask = new GetProductsTask(mobileToken, brandID);
+			m_getProductsTask.setDelegate(new GetProductsTask.AsyncResponse()
 			{
-				JSONObject jsonAll = new JSONObject();
-
-				String authToken = getMobileToken();
-				JSONObject json = new JSONObject();
-				json.put("mobile_token", authToken);
-				jsonAll.put("auth", json);
-
-				json = new JSONObject();
-
-				json.put("brandID", this.m_brandID);
-
-				jsonAll.put("data", json);
-
-				//DEBUG:
-				System.out.println("SENDING:");
-				System.out.println(jsonAll.toString());
-
-				OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-				osw.write(jsonAll.toString());
-				osw.flush();
-				osw.close();
-
-			}
-			catch (JSONException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		private boolean readStream(InputStream in)
-		{
-			try
-			{
-				m_response = convertToString(in);
-				return true;
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-			return false;
-		}
-
-		private boolean send()
-		{
-			try
-			{
-				URL url = new URL(LOGIN_URL);
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-				urlConnection.setDoInput(true);
-				urlConnection.setDoOutput(true);
-				urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-				//urlConnection.setChunkedStreamingMode(0);
-				urlConnection.setRequestMethod("POST");
-				urlConnection.connect();
-
-				OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-				if (!writeStream(out))
+				@Override
+				public void onPostExecute(boolean sendSucceeded, boolean taskSucceeded)
 				{
-					System.out.println("Problem with reading the output stream.");
-					return false;
-				}
+					showProgress(false);
 
-				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				if (!readStream(in))
-				{
-					System.out.println("Problem with reading the input stream.");
-					return false;
-				}
-
-				urlConnection.disconnect();
-
-			} catch (MalformedURLException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... params)
-		{
-			m_response = "";
-			if (send())
-			{
-				//Successful post.
-				System.out.println("Successfully sent products with brand id request.");
-
-				//DEBUG:
-				System.out.println("RESPONSE: ");
-				System.out.println(m_response);
-
-				//Handle response.
-				try
-				{
-					JSONObject responseJSON = new JSONObject(m_response);
-					JSONObject auth = responseJSON.getJSONObject("auth");
-					boolean valid = auth.getBoolean("valid");
-					if (valid)
+					if (taskSucceeded)
 					{
-						m_responseJSON = responseJSON.getJSONArray("data");
-						//DEBUG:
-						System.out.println("Products with brand id request successful.");
+						//Fetched products with brand id.
 
-						return true;
+						//TODO: Create lookup array of product details in order of spinner ids.
+
+						//TODO: Add descriptions to the product spinner.
+						m_productDescriptionItems.clear();
+
+						m_productDescriptionItems = populateProductSpinner(m_getProductsTask.m_responseJSON);
+
+						m_productDescriptionAdapter.addAll(m_productDescriptionItems);
+						m_productDescriptionAdapter.notifyDataSetChanged();
+
+						//TODO: Show the add medication form.
+
 					}
 					else
 					{
-						//DEBUG:
-						System.out.println("Products with brand id request failed.");
-						System.out.println("ERROR CODE:");
-						System.out.println(auth.getString("error_code"));
-
-						return false;
+						//Failed to fetch products with brand id.
 					}
-				} catch (JSONException e)
-				{
-					e.printStackTrace();
-					return false;
+
+					m_getProductsTask = null;
 				}
-			}
-			else
-			{
-				System.out.println("Failed to send products with brand id request.");
-				return false;
-			}
-		}
 
-		private String convertToString(InputStream is) throws IOException
-		{
-			BufferedReader r = new BufferedReader(new InputStreamReader(is));
-			StringBuilder total = new StringBuilder();
-			String line;
-			while ((line = r.readLine()) != null)
-			{
-				total.append(line);
-			}
-			return new String(total);
-		}
+			});
 
-		public ArrayList<String> populateProductSpinner(JSONArray data)
-		{
-			ArrayList<String> resultList = new ArrayList<String>();
-
-			//DEBUG:
-			System.out.println("JSON: ");
-			System.out.println(data.toString());
-
-
-			m_productIDItems = new int[data.length()];
-			for (int i = 0; i < data.length(); i++)
-			{
-				try
-				{
-					JSONObject row = data.getJSONObject(i);
-					MedicationBrand brand = new MedicationBrand();
-
-					//TODO: Store product id.
-					//int productID = row.getInt("id");
-
-					String productDescription = row.getString("description");
-					m_productIDItems[i] = row.getInt("id");
-
-					resultList.add(productDescription);
-
-				} catch (JSONException e)
-				{
-					e.printStackTrace();
-				}
-			}
-
-			return resultList;
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success)
-		{
-			m_addMedicationTask = null;
-			showProgress(false);
-
-			if (success)
-			{
-				//Fetched products with brand id.
-
-				//TODO: Create lookup array of product details in order of spinner ids.
-
-				//TODO: Add descriptions to the product spinner.
-				m_productDescriptionItems.clear();
-				m_productDescriptionItems = populateProductSpinner(m_responseJSON);
-				m_productDescriptionAdapter.addAll(m_productDescriptionItems);
-				m_productDescriptionAdapter.notifyDataSetChanged();
-
-				//TODO: Show the add medication form.
-
-			}
-			else
-			{
-				//Failed to fetch products with brand id.
-				//m_passwordEditOne.setError(getString(R.string.error_incorrect_password));
-				//m_passwordEditOne.requestFocus();
-			}
-		}
-
-		@Override
-		protected void onCancelled()
-		{
-			m_addMedicationTask = null;
-			showProgress(false);
+			m_getProductsTask.execute((Void) null);
 		}
 	}
 
@@ -738,24 +597,6 @@ public class AddMedicationActivity extends AppCompatActivity
 			return false;
 		}
 
-		//Reminder date.
-		if (reminderDate.length() == 0)
-		{
-			m_reminderDateView.setError("Reminder date was not given.");
-			m_reminderDateView.requestFocus();
-			return false;
-		}
-
-		Pattern pattern = Pattern.compile("^((\\d{4})-(\\d{2})-(\\d{2}))$");
-		Matcher match = pattern.matcher(reminderDate);
-		boolean matched = match.matches();
-		if (!matched)
-		{
-			m_reminderDateView.setError("Reminder date was not written in the correct format.");
-			m_reminderDateView.requestFocus();
-			return false;
-		}
-
 		//Reminder time.
 		if (reminderTime.length() == 0)
 		{
@@ -765,9 +606,9 @@ public class AddMedicationActivity extends AppCompatActivity
 			return false;
 		}
 
-		pattern = Pattern.compile("^(\\d{2}):(\\d{2})$");
-		match = pattern.matcher(reminderTime);
-		matched = match.matches();
+		Pattern pattern = Pattern.compile("^(\\d{2}):(\\d{2})$");
+		Matcher match = pattern.matcher(reminderTime);
+		boolean matched = match.matches();
 		if (matched)
 		{
 			int hours = Integer.parseInt(match.group(1));
@@ -793,6 +634,40 @@ public class AddMedicationActivity extends AppCompatActivity
 		{
 			m_reminderTimeView.setError("Reminder time was not written in the correct format.");
 			m_reminderTimeView.requestFocus();
+
+			return false;
+		}
+
+		//Reminder date.
+		if (reminderDate.length() == 0)
+		{
+			m_reminderDateView.setError("Reminder date was not given.");
+			m_reminderDateView.requestFocus();
+			return false;
+		}
+
+		pattern = Pattern.compile("^((\\d{4})-(\\d{2})-(\\d{2}))$");
+		match = pattern.matcher(reminderDate);
+		matched = match.matches();
+		if (!matched)
+		{
+			m_reminderDateView.setError("Reminder date was not written in the correct format.");
+			m_reminderDateView.requestFocus();
+			return false;
+		}
+
+		if (toTake == -1)
+		{
+			m_toTakeView.setError("Items to take is blank or not a number.");
+			m_toTakeView.requestFocus();
+
+			return false;
+		}
+
+		if (toRemaining == -1)
+		{
+			m_toRemainingView.setError("Items remaining is blank or not a number.");
+			m_toRemainingView.requestFocus();
 
 			return false;
 		}
@@ -943,7 +818,7 @@ public class AddMedicationActivity extends AppCompatActivity
 							//DEBUG:
 							System.out.println("Deleted medication schedule.");
 
-							goSchedule();
+							goSchedule(true);
 						}
 						else
 						{
@@ -990,21 +865,7 @@ public class AddMedicationActivity extends AppCompatActivity
 
 		String repeatCustom = m_repeatCustomView.getText().toString();
 		int toTake = getNumberFromInput(m_toTakeView.getText().toString());
-		if (toTake == -1)
-		{
-			m_toTakeView.setError("Items to take is blank or not a number.");
-			m_toTakeView.requestFocus();
-
-			return;
-		}
 		int toRemaining = getNumberFromInput(m_toRemainingView.getText().toString());
-		if (toRemaining == -1)
-		{
-			m_toRemainingView.setError("Items remaining is blank or not a number.");
-			m_toRemainingView.requestFocus();
-
-			return;
-		}
 		String nickname = m_nicknameView.getText().toString();
 
 		//TODO: Input validation.
@@ -1042,263 +903,59 @@ public class AddMedicationActivity extends AppCompatActivity
 			//Show the progress spinner...
 			showProgress(true);
 
+			m_storageManager = new StorageManager();
+			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
+
 			//Create and run an auth task in the background.
-			m_addMedicationTask = new AddMedicationTask(productSelect, reminderDate,
+			m_addMedicationTask = new AddMedicationTask(mobileToken, productSelect, reminderDate,
 					reminderTime, repeatSelect, repeatCustom, toTake, toRemaining, nickname);
-			m_addMedicationTask.execute((Void) null);
-		}
-	}
 
-	/**
-	 * Represents an asynchronous delete account request.
-	 */
-	public class AddMedicationTask extends AsyncTask<Void, Void, Boolean>
-	{
-		private static final String PREFS_NAME = "TrackMyMedsPref";
-		private static final String LOGIN_URL = "https://trackmymeds.frb.io/med_add_mobile";
-
-		String m_errorMessage;
-		String m_response;
-		private JSONArray m_responseJSON;
-
-		private int m_productSelect;
-		private String m_reminderDate;
-		private String m_reminderTime;
-		private String m_repeatSelect;
-		private String m_repeatCustom;
-		private int m_toTake;
-		private int m_toRemaining;
-		private String m_nickname;
-
-		AddMedicationTask(int productSelect, String reminderDate, String reminderTime,
-						  String repeatSelect, String repeatCustom, int toTake,
-						  int toRemaining, String nickname)
-		{
-			m_errorMessage = "";
-			m_response = "";
-			m_responseJSON = null;
-
-			m_productSelect = productSelect;
-			m_reminderDate = reminderDate;
-			m_reminderTime = reminderTime;
-			m_repeatSelect = repeatSelect;
-			m_repeatCustom = repeatCustom;
-			m_toTake = toTake;
-			m_toRemaining = toRemaining;
-			m_nickname = nickname;
-		}
-
-		private String getMobileToken()
-		{
-			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-			String mobileToken = settings.getString("mobile_token", "");
-
-			return mobileToken;
-		}
-
-		private boolean writeStream(OutputStream out)
-		{
-			try
+			m_addMedicationTask.setDelegate(new ScheduleTask.AsyncResponse()
 			{
-				JSONObject jsonAll = new JSONObject();
-
-				//TODO:
-				String authToken = getMobileToken();
-				JSONObject json = new JSONObject();
-				json.put("mobile_token", "d37db33490d3d828e89e3447cbf0b2cb9cfa98a3931675e612aa9b4b81aa95d8e151e6f57d29601c765472f11d48371e5989b1a6998dc1796ea14adb84ab4ff8");
-				jsonAll.put("auth", json);
-
-				json = new JSONObject();
-
-				json.put("medAddType", m_medAddType);
-				json.put("medScheduleID", m_medScheduleID);
-
-				json.put("productSelect", m_productSelect);
-				json.put("reminderDate", m_reminderDate);
-				json.put("reminderTime", m_reminderTime);
-				json.put("repeatSelect", m_repeatSelect);
-				json.put("repeatCustom", m_repeatCustom);
-				json.put("toTake", m_toTake);
-				json.put("toRemaining", m_toRemaining);
-				json.put("nickname", m_nickname);
-
-				jsonAll.put("data", json);
-
-				//DEBUG:
-				System.out.println("SENDING:");
-				System.out.println(jsonAll.toString());
-
-				OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-				osw.write(jsonAll.toString());
-				osw.flush();
-				osw.close();
-
-			}
-			catch (JSONException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		private boolean readStream(InputStream in)
-		{
-			try
-			{
-				m_response = convertToString(in);
-				return true;
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-			return false;
-		}
-
-		private boolean send()
-		{
-			try
-			{
-				URL url = new URL(LOGIN_URL);
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-				urlConnection.setDoInput(true);
-				urlConnection.setDoOutput(true);
-				urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-				//urlConnection.setChunkedStreamingMode(0);
-				urlConnection.setRequestMethod("POST");
-				urlConnection.connect();
-
-				OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-				if (!writeStream(out))
+				@Override
+				public void onPostExecute(boolean sendSucceeded, boolean taskSucceeded)
 				{
-					System.out.println("Problem with reading the output stream.");
-					return false;
-				}
+					showProgress(false);
 
-				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				if (!readStream(in))
-				{
-					System.out.println("Problem with reading the input stream.");
-					return false;
-				}
-
-				urlConnection.disconnect();
-
-			} catch (MalformedURLException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... params)
-		{
-			m_response = "";
-			if (send())
-			{
-				//Successful post.
-				System.out.println("Successfully sent add medication request.");
-
-				//DEBUG:
-				System.out.println("RESPONSE: ");
-				System.out.println(m_response);
-
-				//Handle response.
-				try
-				{
-					JSONObject responseJSON = new JSONObject(m_response);
-					JSONObject auth = responseJSON.getJSONObject("auth");
-					boolean valid = auth.getBoolean("valid");
-					if (valid)
+					if (sendSucceeded)
 					{
-						//DEBUG:
-						System.out.println("Add medication successful.");
+						//Request sent successfully.
+						if (taskSucceeded)
+						{
+							//Task successful.
+							goSchedule(true);
+						}
+						else
+						{
+							//Task failed.
+							final int snackBarDurationSeconds = 10;
+							String errorString = "Error (" + m_addMedicationTask.m_errorCode +
+									"): " + m_addMedicationTask.m_errorMessage;
 
-						return true;
+							m_snackBar = Snackbar.make(findViewById(R.id.add_medication_layout),
+									errorString, snackBarDurationSeconds * 1000);
+
+							m_snackBar.show();
+						}
 					}
 					else
 					{
-						//DEBUG:
-						System.out.println("Add medication failed.");
-						System.out.println("ERROR CODE:");
-						System.out.println(auth.getString("error_code"));
-						m_errorMessage = auth.getString("error_message");
+						//Failed to send request.
+						final int snackBarDurationSeconds = 10;
+						String errorString = "Error (" + m_addMedicationTask.m_errorCode +
+								"): " + m_addMedicationTask.m_errorMessage;
 
-						return false;
+						m_snackBar = Snackbar.make(findViewById(R.id.add_medication_layout),
+								errorString, snackBarDurationSeconds * 1000);
+
+						m_snackBar.show();
 					}
-				} catch (JSONException e)
-				{
-					e.printStackTrace();
-					return false;
+
+					m_addMedicationTask = null;
 				}
-			}
-			else
-			{
-				System.out.println("Failed to send add medication request.");
-				return false;
-			}
-		}
+			});
 
-		private String convertToString(InputStream is) throws IOException
-		{
-			BufferedReader r = new BufferedReader(new InputStreamReader(is));
-			StringBuilder total = new StringBuilder();
-			String line;
-			while ((line = r.readLine()) != null)
-			{
-				total.append(line);
-			}
-			return new String(total);
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success)
-		{
-			m_addMedicationTask = null;
-			showProgress(false);
-
-			if (success)
-			{
-				//Added medication to user schedule.
-				Intent intent = new Intent(getBaseContext(), ScheduleActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: Might not need these.
-				startActivity(intent);
-			}
-			else
-			{
-				//Failed to delete account.
-				//m_passwordEditOne.setError(getString(R.string.error_incorrect_password));
-				//m_passwordEditOne.requestFocus();
-				m_reminderDateView.setError(m_errorMessage);
-			}
-		}
-
-		@Override
-		protected void onCancelled()
-		{
-			m_addMedicationTask = null;
-			showProgress(false);
+			m_addMedicationTask.execute((Void) null);
 		}
 	}
 }

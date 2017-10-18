@@ -7,21 +7,21 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/medication_list_toolbar"
+        style="@style/tmmToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
-        app:theme="@style/tmmToolbar"
         app:popupTheme="@style/tmmToolbar"
-        style="@style/tmmToolbar" />
+        app:theme="@style/tmmToolbar"/>
 
     <ProgressBar
-        android:id="@+id/med_list_progress"
+        android:id="@+id/medication_list_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,26 +30,35 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/medication_list_label_search_guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_search_guide"
+            android:textColor="@android:color/white"/>
+
+        <TextView
             android:id="@+id/label_medication_list_no_results"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/medication_list_label_no_results"
+            android:text="@string/label_no_results"
             android:textColor="@android:color/white"
             android:visibility="gone"/>
 
         <ScrollView
-            android:id="@+id/med_list_scroll"
+            android:id="@+id/medication_list_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
 
             <ListView
-                android:id="@+id/med_list"
+                android:id="@+id/medication_list"
+                style="@style/tmmListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:dividerHeight="5sp"
-                android:entries="@array/add_medication_products"
-                android:theme="@style/tmmListView" />
+                android:dividerHeight="10sp"
+                android:divider="@android:color/transparent"
+                android:entries="@array/options_brands"
+                android:textColor="@android:color/white"/>
         </ScrollView>
 
     </LinearLayout>

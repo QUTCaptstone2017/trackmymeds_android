@@ -44,8 +44,8 @@
                 android:id="@+id/list_view_medication_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
                 android:headerDividersEnabled="false"/>
+            <!-- android:layout_margin="16d1p" -->
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/button_add_medication"
@@ -56,7 +56,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="end|bottom"
                 android:clickable="true"
-                app:backgroundTint="@color/app_notif"
+                app:backgroundTint="@color/app_action"
                 app:fabSize="normal"
                 app:srcCompat="@drawable/add_icon"/>
 

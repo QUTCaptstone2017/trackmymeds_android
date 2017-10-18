@@ -8,4 +8,5 @@
     <color name="app_bg_light">#0079bf</color>
     <color name="app_bg_dark">#0067a3</color>
     <color name="app_notif">#eb5a46</color>
+    <color name="app_action">#84C651</color>
 </resources>

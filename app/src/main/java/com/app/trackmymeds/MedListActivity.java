@@ -27,18 +27,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -49,32 +37,39 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 {
 	//Properties.
 	//FilterMedicationTask m_filterMedicationTask;
-	SearchMedicationTask m_searchMedicationTask;
+	SearchBrandTask m_searchMedicationTask;
+	StorageManager m_storageManager;
 
 	private View m_progressView;
 	private ListView m_medListView;
 
 	private View m_noResultsLabel;
+	private View m_searchGuideLabel;
 
-	private ArrayAdapter<MedicationBrand> m_medListAdapter;
+	private MedicationList m_medListAdapter;
 	private ArrayList<MedicationBrand> m_medListItems;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_med_list);
+		setContentView(R.layout.activity_medication_list);
 
-		Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-		setSupportActionBar(myToolbar);
+		Toolbar medicationListToolbar = (Toolbar) findViewById(R.id.medication_list_toolbar);
+		setSupportActionBar(medicationListToolbar);
 
-		m_medListView = (ListView) findViewById(R.id.med_list);
-		m_progressView = findViewById(R.id.med_list_progress);
+		m_storageManager = new StorageManager();
+
+		m_medListView = (ListView) findViewById(R.id.medication_list);
+		m_progressView = findViewById(R.id.medication_list_progress);
 
 		m_noResultsLabel = findViewById(R.id.label_medication_list_no_results);
+		m_searchGuideLabel = findViewById(R.id.medication_list_label_search_guide);
 
 		m_medListItems = new ArrayList<MedicationBrand>();
-		m_medListAdapter = new ArrayAdapter(MedListActivity.this, android.R.layout.simple_list_item_1, m_medListItems);
+
+		//TODO: Write a custom styling for this.
+		m_medListAdapter = new MedicationList(getBaseContext(), m_medListItems);
 		m_medListView.setAdapter(m_medListAdapter);
 
 		m_medListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -89,9 +84,7 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 
 				Intent intent = new Intent(getBaseContext(), AddMedicationActivity.class);
 				intent.putExtra("EXTRA_MED_ADD_TYPE", "add");
-				intent.putExtra("EXTRA_BRAND_ID", brand.m_id);
-				intent.putExtra("EXTRA_BRAND_SUPPLIER_ID", brand.m_supplierID);
-				intent.putExtra("EXTRA_BRAND_NAME", brand.m_name);
+				intent.putExtra("EXTRA_BRAND_JSON", brand.m_json.toString());
 				startActivity(intent);
 			}
 		});
@@ -101,23 +94,140 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.med_list, menu);
+		inflater.inflate(R.menu.medication_list, menu);
 
-		MenuItem searchItem = menu.findItem(R.id.action_search);
+		MenuItem searchItem = menu.findItem(R.id.menu_action_search);
 		SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 		if (searchView != null)
 		{
 			searchView.setOnQueryTextListener(this);
-			searchView.setQueryHint("Search by medication brand name...");
+			searchView.setQueryHint(getString(R.string.prompt_medication_search));
 		}
 
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			//Filter the medication list by letter
+			case R.id.letter_filter_a:
+				filterByLetter("a");
+			return true;
+
+			case R.id.letter_filter_b:
+				filterByLetter("b");
+			return true;
+
+			case R.id.letter_filter_c:
+				filterByLetter("c");
+			return true;
+
+			case R.id.letter_filter_d:
+				filterByLetter("d");
+			return true;
+
+			case R.id.letter_filter_e:
+				filterByLetter("e");
+			return true;
+
+			case R.id.letter_filter_f:
+				filterByLetter("f");
+			return true;
+
+			case R.id.letter_filter_g:
+				filterByLetter("g");
+			return true;
+
+			case R.id.letter_filter_h:
+				filterByLetter("h");
+			return true;
+
+			case R.id.letter_filter_i:
+				filterByLetter("i");
+			return true;
+
+			case R.id.letter_filter_j:
+				filterByLetter("j");
+			return true;
+
+			case R.id.letter_filter_k:
+				filterByLetter("k");
+			return true;
+
+			case R.id.letter_filter_l:
+				filterByLetter("l");
+			return true;
+
+			case R.id.letter_filter_m:
+				filterByLetter("m");
+			return true;
+
+			case R.id.letter_filter_n:
+				filterByLetter("n");
+			return true;
+
+			case R.id.letter_filter_o:
+				filterByLetter("o");
+			return true;
+
+			case R.id.letter_filter_p:
+				filterByLetter("p");
+			return true;
+
+			case R.id.letter_filter_q:
+				filterByLetter("q");
+			return true;
+
+			case R.id.letter_filter_r:
+				filterByLetter("r");
+			return true;
+
+			case R.id.letter_filter_s:
+				filterByLetter("s");
+			return true;
+
+			case R.id.letter_filter_t:
+				filterByLetter("t");
+			return true;
+
+			case R.id.letter_filter_u:
+				filterByLetter("u");
+			return true;
+
+			case R.id.letter_filter_v:
+				filterByLetter("v");
+			return true;
+
+			case R.id.letter_filter_w:
+				filterByLetter("w");
+			return true;
+
+			case R.id.letter_filter_x:
+				filterByLetter("x");
+			return true;
+
+			case R.id.letter_filter_y:
+				filterByLetter("y");
+			return true;
+
+			case R.id.letter_filter_z:
+				filterByLetter("z");
+			return true;
+
+			//If we got here, the user's action was not recognized.
+			//Invoke the superclass to handle it.
+			default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
 	public boolean onQueryTextSubmit(String query)
 	{
-		searchMedication();
+		searchMedication(query, SearchBrandTask.SearchBrandType.SEARCH);
 
 		return true;
 	}
@@ -126,6 +236,11 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 	public boolean onQueryTextChange(String newText)
 	{
 		return false;
+	}
+
+	private void filterByLetter(String filterLetter)
+	{
+		searchMedication(filterLetter, SearchBrandTask.SearchBrandType.FILTER);
 	}
 
 	/**
@@ -172,21 +287,22 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 		}
 	}
 
-	public void searchMedication()
+	public void searchMedication(String searchString,
+								 SearchBrandTask.SearchBrandType searchBrandType)
 	{
 		if (m_searchMedicationTask != null)
 		{
 			return;
 		}
 
+		//Hide the guide text.
+		m_searchGuideLabel.setVisibility(View.GONE);
+
 		//Reset errors.
 		m_noResultsLabel.setVisibility(View.GONE);
 
 		boolean cancel = false;
 		View focusView = m_medListView;
-
-		SearchView searchView = (SearchView) findViewById(R.id.action_search);
-		String searchString = searchView.getQuery().toString();
 
 		//Check internet connectivity.
 		ConnectivityManager connMgr = (ConnectivityManager)
@@ -213,255 +329,92 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 			//Show the progress spinner...
 			showProgress(true);
 
+			m_storageManager = new StorageManager();
+			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
+
+			//TODO: Determine the search type.
 			//Create and run an auth task in the background.
-			m_searchMedicationTask = new SearchMedicationTask(searchString);
+			m_searchMedicationTask = new SearchBrandTask(mobileToken, searchString,
+					searchBrandType);
+
+			//Set anonymous response callback.
+			m_searchMedicationTask.setDelegate(new SearchBrandTask.AsyncResponse()
+			{
+				@Override
+				public void onPostExecute(boolean sendSucceeded, boolean taskSucceeded)
+				{
+					showProgress(false);
+
+					if (sendSucceeded)
+					{
+						//Request sent successfully.
+						if (taskSucceeded)
+						{
+							//Search/filter successful.
+							m_medListItems = populateMedList(m_searchMedicationTask.m_responseJSON);
+
+							if (m_medListItems.size() == 0)
+							{
+								m_noResultsLabel.setVisibility(View.VISIBLE);
+							}
+
+							m_medListAdapter.clear();
+							m_medListAdapter.addAll(m_medListItems);
+							m_medListAdapter.notifyDataSetChanged();
+						}
+						else
+						{
+							//Failed to search/filter.
+						}
+					}
+					else
+					{
+						//Failed to send request.
+					}
+
+					m_searchMedicationTask = null;
+					showProgress(false);
+				}
+			});
+
 			m_searchMedicationTask.execute((Void) null);
 		}
 	}
 
-	/**
-	 * Represents an asynchronous daily schedule request.
-	 */
-	public class SearchMedicationTask extends AsyncTask<Void, Void, Boolean>
+	public ArrayList<MedicationBrand> populateMedList(JSONObject response)
 	{
-		//TODO: Move this.
-		private static final String PREFS_NAME = "TrackMyMedsPref";
+		ArrayList<MedicationBrand> resultList = new ArrayList<MedicationBrand>();
 
-		private static final String ROUTE_URL = "https://trackmymeds.frb.io/med_search_json_mobile";
-		private String m_response;
-		private JSONArray m_responseJSON;
+		//DEBUG:
+		System.out.println("JSON: ");
+		System.out.println(response.toString());
 
-		private String m_searchString;
-
-		SearchMedicationTask(String searchString)
+		try
 		{
-			m_response = "";
-			m_responseJSON = null;
-
-			m_searchString = searchString;
-		}
-
-		private String getMobileToken()
-		{
-			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-			String mobileToken = settings.getString("mobile_token", "");
-
-			return mobileToken;
-		}
-
-		private boolean writeStream(OutputStream out)
-		{
-			try
-			{
-				JSONObject jsonAll = new JSONObject();
-
-				String authToken = getMobileToken();
-				JSONObject json = new JSONObject();
-				json.put("mobile_token", authToken);
-				jsonAll.put("auth", json);
-
-				json = new JSONObject();
-				json.put("s", m_searchString);
-				json.put("sb", "s");
-				jsonAll.put("data", json);
-
-				//DEBUG:
-				System.out.println("SENDING:");
-				System.out.println(jsonAll.toString());
-
-				OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-				osw.write(jsonAll.toString());
-				osw.flush();
-				osw.close();
-
-			} catch (JSONException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (UnsupportedEncodingException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		private boolean readStream(InputStream in)
-		{
-			try
-			{
-				m_response = convertToString(in);
-				return true;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-			return false;
-		}
-
-		private boolean send()
-		{
-			try
-			{
-				URL url = new URL(ROUTE_URL);
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-				urlConnection.setDoInput(true);
-				urlConnection.setDoOutput(true);
-				urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-				//urlConnection.setChunkedStreamingMode(0);
-				urlConnection.setRequestMethod("POST");
-				urlConnection.connect();
-
-				OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-				if (!writeStream(out))
-				{
-					System.out.println("Problem with reading the output stream.");
-					return false;
-				}
-
-				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				if (!readStream(in))
-				{
-					System.out.println("Problem with reading the input stream.");
-					return false;
-				}
-
-				urlConnection.disconnect();
-
-			} catch (MalformedURLException e)
-			{
-				e.printStackTrace();
-				return false;
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-
-			return true;
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... params)
-		{
-			m_response = "";
-			if (send())
-			{
-				//Successful login.
-				System.out.println("Successfully sent medication search.");
-
-				//DEBUG:
-				System.out.println("RESPONSE: ");
-				System.out.println(m_response);
-
-				//Handle response.
-				try
-				{
-					JSONObject responseJSON = new JSONObject(m_response);
-					JSONObject auth = responseJSON.getJSONObject("auth");
-					boolean valid = auth.getBoolean("valid");
-					if (valid)
-					{
-						m_responseJSON = responseJSON.getJSONArray("data");
-						System.out.println("Medication search successful.");
-						return true;
-					}
-					else
-					{
-						System.out.println("Medication search failed.");
-						return false;
-					}
-				} catch (JSONException e)
-				{
-					e.printStackTrace();
-					return false;
-				}
-			}
-			else
-			{
-				System.out.println("Failed to send medication search.");
-				return false;
-			}
-		}
-
-		private String convertToString(InputStream is) throws IOException
-		{
-			BufferedReader r = new BufferedReader(new InputStreamReader(is));
-			StringBuilder total = new StringBuilder();
-			String line;
-			while ((line = r.readLine()) != null)
-			{
-				total.append(line);
-			}
-			return new String(total);
-		}
-
-		public ArrayList<MedicationBrand> populateMedList(JSONArray data)
-		{
-			ArrayList<MedicationBrand> resultList = new ArrayList<MedicationBrand>();
-
-			//DEBUG:
-			System.out.println("JSON: ");
-			System.out.println(data.toString());
+			//Convert JSON object to JSON array.
+			JSONArray data = response.getJSONArray("data");
 
 			for (int i = 0; i < data.length(); i++)
 			{
-				try
+				JSONObject row = data.getJSONObject(i);
+
+				MedicationBrand brand = new MedicationBrand();
+				if (brand.Initialize(row))
 				{
-					JSONObject row = data.getJSONObject(i);
-					MedicationBrand brand = new MedicationBrand();
-
-					brand.m_id = row.getInt("id");
-					brand.m_supplierID = row.getInt("supplier_fk");
-					brand.m_name = row.getString("name");
-
 					resultList.add(brand);
-				} catch (JSONException e)
+				}
+				else
 				{
-					e.printStackTrace();
+					System.out.println("MedicationBrand::Initialize(): Failed.");
 				}
 			}
-
-			return resultList;
 		}
-
-		@Override
-		protected void onPostExecute(final Boolean success)
+		catch (JSONException e)
 		{
-			m_searchMedicationTask = null;
-			showProgress(false);
-
-			if (success)
-			{
-				m_medListItems = populateMedList(m_responseJSON);
-
-				if (m_medListItems.size() == 0)
-				{
-					m_noResultsLabel.setVisibility(View.VISIBLE);
-				}
-
-				m_medListAdapter.clear();
-				m_medListAdapter.addAll(m_medListItems);
-				m_medListAdapter.notifyDataSetChanged();
-			}
-			else
-			{
-
-			}
+			e.printStackTrace();
 		}
 
-		@Override
-		protected void onCancelled()
-		{
-			m_searchMedicationTask = null;
-			showProgress(false);
-		}
+		return resultList;
 	}
+
 }

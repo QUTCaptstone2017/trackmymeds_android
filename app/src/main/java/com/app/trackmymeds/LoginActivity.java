@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity
 		mLoginFormView = findViewById(R.id.login_form);
 		m_progressView = (ProgressBar)findViewById(R.id.login_progress);
 
-		Button mEmailSignInButton = (Button) findViewById(R.id.button_sign_in);
+		Button mEmailSignInButton = (Button) findViewById(R.id.button_login);
 		mEmailSignInButton.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity
 			}
 		});
 
-		Button fbSignInButton = (Button) findViewById(R.id.button_sign_in_fb);
+		Button fbSignInButton = (Button) findViewById(R.id.button_login_fb);
 		fbSignInButton.setOnClickListener(new OnClickListener()
 		{
 			@Override

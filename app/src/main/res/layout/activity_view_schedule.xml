@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/view_medication_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimaryDark"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              tools:context="com.app.trackmymeds.AddMedicationActivity">
+    <!-- Last line is a hack to prevent immediate text edit focus -->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/view_med_toolbar"
+        style="@style/tmmToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:popupTheme="@style/tmmToolbar"
+        app:theme="@style/tmmToolbar"
+        tools:ignore="UnusedAttribute"/>
+
+    <ProgressBar
+        android:id="@+id/view_medication_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="0.64"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/view_medication_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/view_medication_details_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_view_schedule_details"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/view_medication_edit_fab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end|bottom"
+            android:clickable="true"
+            app:backgroundTint="@color/app_action"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/edit_icon"/>
+    </RelativeLayout>
+
+</LinearLayout>
