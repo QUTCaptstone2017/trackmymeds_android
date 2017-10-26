@@ -3,6 +3,7 @@ package com.app.trackmymeds;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -316,6 +317,8 @@ public class ViewScheduleActivity extends AppCompatActivity
 						if (taskSucceeded)
 						{
 							//Task successful.
+							NotificationManager nManager = ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+							nManager.cancelAll();
 
 							//DEBUG:
 							System.out.println("Deleted medication schedule.");

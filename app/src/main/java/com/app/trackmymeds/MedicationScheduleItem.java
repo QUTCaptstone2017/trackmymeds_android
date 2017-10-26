@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -177,5 +178,29 @@ public class MedicationScheduleItem
 				"Time To Take: " + timeString;
 
 		return resultString;
+	}
+
+	public long calculateWait()
+	{
+		long diff = 0;
+		try
+		{
+			Date currentTime = Calendar.getInstance().getTime();
+
+			SimpleDateFormat parseDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date reminder = parseDateFormat.parse(m_dateToTake + " " + m_timeToTake);
+
+			diff = reminder.getTime() - currentTime.getTime();
+
+			System.out.println("Millis before reminder!:");
+			System.out.println(m_nickname);
+			System.out.println(diff);
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+
+		return diff;
 	}
 }

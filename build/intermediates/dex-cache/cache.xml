@@ -3,156 +3,156 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\Declan\.android\build-cache\6c4199134f500246c2989d9173de33295bb4b957\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bd85e64cf4cdc9084b713a41cdf7865705139f21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_30290d9bebad72d2207d0c5e4c3fbabf49a2a2c8\classes.dex" />
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_80433115922ab35204acb1fbb9c00c10b2f2fbe1\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\Declan\.android\build-cache\11ddd7c65214d508915efe71039e1b0bd0b5bdb4\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="fb7379067cd488a153a370915e01d7a165ee0186">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_77601f91fec6019e4f15bd40584a2af4c257064b\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_f8b4f6822901cdcd6071ec3684114b51192a0820.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\2256c7b5feb02e945cbc12d0a3114902fdc6c2c5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
         sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_b4d14cc16b65e0d6fe7440b486a6a197c1af4f71.jar" />
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7c7c94391b8a1b892f24870d32dbc80c39cf25ee\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_c4c7eb3d090ba828e166807f3a003d397e567389.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\749c58c673e78f819910a967da12778862aa5854\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_fb468b95eba5d0c390b652d7b8bcd065ec1cae2d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\8a039ded7cd5a544e02bfec0a068c5671d8b4533\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_09ac5ced442cce314d767018bf6a8ee244b22b01.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\f32a5f55d29afb5bd9ffd70168e9774cfe8efac2\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_4374075edd75f2f2ee12de7c47cb3952ed0c0234.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\07ca3e0d087be35e661321d1d061bcb1db49813b\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_d5a76d3d6439ba27783a2d143ca91987334873a0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_325320085f4ea0caf3c7a4b7242ac76a8cf2dad7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\1e88ebd7e7f1f41cd1583d05ac1505c61b9b299a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_8b28bedab6560cd922c5c1c0086263535327bb69.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\cbd01b08e37ecd09ef9025f4c78c7f0f5702d7d9\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_cbdeef8bcdad8a377f145f11d4d96f12b12a74f9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\cec14eabcc3e52ea1d13da1c3940220448ea8217\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_aa212909712b3a2a5ead60a7cb512fd8941c9c13.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\4f99af85bac900ce2d0c5acaf833dffd35cffb46\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_a84bd6a6e684da9ee83283b51e582c572379205e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.0"
-        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_21271a7a9c26355d06361489e425dec1d25e51f2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\17992dbb3e97a6c3db2ea3ea7607778df48ae86e\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\ce4104baedf38adc9fbd2a993dea4d7342991fd3\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_0bfc3a3a5e89f04dcd41a4f858405cb85c37d86d.jar" />
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b3bbfcfa552f7bca7ebc7b0b2fd968a0167658fd\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Declan\.android\build-cache\ae8c9069078b3a155d08825eed83490f9d40db10\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\bb8c088a3ca9aaea9f78ed15792103d31048e38a\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\build\intermediates\pre-dexed\debug\classes_9c67a7ae8483bada233406a28892ec284094ad39.jar" />
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_73c4eb08c7bd9f665fd9c2cd4c43173cca82db6a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="8cb34c718242d9a242132b1ea888ad35d7e9d434">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_5a435e818585ec003e9b9425ee9fe26906dcc0ee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\6396853626e3607a2187139c621b73f5040b1ce2\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6f99300bbdde3e5220f6e2f3c4fe81c33981d460\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\8a8de7f7c7125142ef385f971f2443324ae22125\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_21c465dccdfc708cfdcd6aa8c00eb4bf1d431540\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_61eb706c1f3b2450c4570d22a1a3ea48e3bf9cdb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_4a50e5f1d94f8904102f1c4a7096a50aeabc7119\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\0096329b96bb327d5833edc7527cfbf03ed11d00\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5086e04467a2fa724017b5a02c5c30864b9fdc83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\2cdebbc7cc33d3b07e7afbf826469b75fb52875b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_098b8f1778a443306f3d8d2d212303995de3543f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\14d756d2afb942c3fde0ec2189d19d09892a9fed\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_043fb896b1407bb9364eec5103b646b793eb3bc3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_b08a6cde0261b287f6886e3457f827dfe57658b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\4e97e8b9ce7ee5d53076b4f3b0da124506a1f866\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_82dc8627752ddb8972ff3224bd69ad00a1968ee8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\32282d15a4613beff58d2d122d864743b89e036d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_05eabb52ba92686cb49e41e83c19bc1349a030de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Declan\.android\build-cache\3c81d56c0bd0310d51f01f7bd0275d04144ec670\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_57b0c30665276695d02897caf260b3b8c8b4b9e6\classes.dex" />
     </item>
 
 </items>

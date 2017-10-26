@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#0067a3</color>
     <color name="colorAccent">#eb5a46</color>
 
+    <color name="app_schedule_div">#0072b4</color>
+
     <color name="black_overlay">#66000000</color>
     <color name="app_bg_light">#0079bf</color>
     <color name="app_bg_dark">#0067a3</color>

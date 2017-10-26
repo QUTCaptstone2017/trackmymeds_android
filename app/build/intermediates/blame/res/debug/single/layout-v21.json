@@ -1,18 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+        "merged": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\6c4199134f500246c2989d9173de33295bb4b957\\output\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout-v21\\notification_action.xml"
+        "merged": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\6c4199134f500246c2989d9173de33295bb4b957\\output\\res\\layout-v21\\notification_action.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+        "merged": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\6c4199134f500246c2989d9173de33295bb4b957\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+        "merged": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\6c4199134f500246c2989d9173de33295bb4b957\\output\\res\\layout-v21\\notification_template_icon_group.xml"
     }
 ]

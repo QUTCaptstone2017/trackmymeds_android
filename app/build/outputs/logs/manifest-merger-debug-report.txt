@@ -1,193 +1,193 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:2:1-77:12
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:2:1-77:12
 	package
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:3:5-34
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:3:5-34
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:6:22-76
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:7:5-67
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:7:5-67
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:7:22-64
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:7:22-64
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:8:5-80
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:10:5-75:19
-MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\749c58c673e78f819910a967da12778862aa5854\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\4f99af85bac900ce2d0c5acaf833dffd35cffb46\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\17992dbb3e97a6c3db2ea3ea7607778df48ae86e\output\AndroidManifest.xml:26:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Declan\.android\build-cache\cec14eabcc3e52ea1d13da1c3940220448ea8217\output\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\07ca3e0d087be35e661321d1d061bcb1db49813b\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\ae8c9069078b3a155d08825eed83490f9d40db10\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\2256c7b5feb02e945cbc12d0a3114902fdc6c2c5\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\f32a5f55d29afb5bd9ffd70168e9774cfe8efac2\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\cbd01b08e37ecd09ef9025f4c78c7f0f5702d7d9\output\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\8a039ded7cd5a544e02bfec0a068c5671d8b4533\output\AndroidManifest.xml:29:5-20
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:10:5-75:19
+MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\6c4199134f500246c2989d9173de33295bb4b957\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\32282d15a4613beff58d2d122d864743b89e036d\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\6396853626e3607a2187139c621b73f5040b1ce2\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\ce4104baedf38adc9fbd2a993dea4d7342991fd3\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Declan\.android\build-cache\2cdebbc7cc33d3b07e7afbf826469b75fb52875b\output\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\8a8de7f7c7125142ef385f971f2443324ae22125\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\bb8c088a3ca9aaea9f78ed15792103d31048e38a\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\11ddd7c65214d508915efe71039e1b0bd0b5bdb4\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\0096329b96bb327d5833edc7527cfbf03ed11d00\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\4e97e8b9ce7ee5d53076b4f3b0da124506a1f866\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\14d756d2afb942c3fde0ec2189d19d09892a9fed\output\AndroidManifest.xml:29:5-20
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:13:9-41
 	android:supportsRtl
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:15:9-35
 	android:roundIcon
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:14:9-54
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:14:9-45
 	android:allowBackup
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:11:9-35
 	android:icon
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:12:9-40
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:16:9-40
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:16:9-40
 receiver#com.app.trackmymeds.DeviceBootReceiever
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:19:9-24:20
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:19:9-24:20
 	android:enabled
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:20:19-42
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:20:19-41
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:19:19-54
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:19:19-54
 intent-filter#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:21:13-23:29
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:21:13-23:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:22:17-86
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:22:17-86
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:22:25-76
-receiver#com.app.trackmymeds.BackgroundReceiver
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:25:9-29:20
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:22:25-76
+receiver#com.app.trackmymeds.AlarmReceiver
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:25:9-29:20
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:25:19-53
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:25:19-48
 activity#com.app.trackmymeds.LoginActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:31:9-34:20
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:31:9-34:20
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:33:13-57
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:33:13-57
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:32:13-42
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:32:13-42
 activity#com.app.trackmymeds.SplashActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:35:9-42:20
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:35:9-42:20
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:37:13-56
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:37:13-56
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:36:13-43
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:36:13-43
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:38:13-41:29
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:38:13-41:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:39:17-69
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:39:17-69
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:39:25-66
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:39:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:40:17-77
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:40:17-77
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:40:27-74
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:40:27-74
 activity#com.app.trackmymeds.RegisterActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:43:9-45:63
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:43:9-45:63
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:45:13-60
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:45:13-60
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:44:13-45
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:44:13-45
 activity#com.app.trackmymeds.ScheduleActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:46:9-49:63
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:46:9-49:63
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:49:13-60
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:49:13-60
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:48:13-63
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:48:13-63
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:47:13-45
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:47:13-45
 activity#com.app.trackmymeds.AddMedicationActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:50:9-53:69
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:50:9-53:69
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:53:13-66
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:53:13-66
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:52:13-63
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:52:13-63
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:51:13-50
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:51:13-50
 activity#com.app.trackmymeds.ViewScheduleActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:54:9-57:68
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:54:9-57:68
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:57:13-65
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:57:13-65
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:56:13-63
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:56:13-63
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:55:13-49
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:55:13-49
 activity#com.app.trackmymeds.ViewScheduleItemActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:58:9-60:73
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:58:9-60:73
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:60:13-70
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:60:13-70
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:59:13-53
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:59:13-53
 activity#com.app.trackmymeds.MedListActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:61:9-71:20
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:61:9-71:20
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:64:13-60
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:64:13-60
 	android:theme
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:63:13-63
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:63:13-63
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:62:13-44
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:62:13-44
 meta-data#android.app.searchable
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:65:13-67:63
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:65:13-67:63
 	android:resource
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:67:17-60
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:67:17-60
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:66:17-54
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:66:17-54
 intent-filter#android.intent.action.SEARCH
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:68:13-70:29
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:68:13-70:29
 action#android.intent.action.SEARCH
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:69:17-71
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:69:17-71
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:69:25-68
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:69:25-68
 activity#com.app.trackmymeds.DeleteAccountActivity
-ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:72:9-74:78
+ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:72:9-74:78
 	android:label
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:74:13-66
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:74:13-66
 	android:name
-		ADDED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml:73:13-50
+		ADDED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml:73:13-50
 uses-sdk
-INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\749c58c673e78f819910a967da12778862aa5854\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\4f99af85bac900ce2d0c5acaf833dffd35cffb46\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Declan\.android\build-cache\1e88ebd7e7f1f41cd1583d05ac1505c61b9b299a\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\17992dbb3e97a6c3db2ea3ea7607778df48ae86e\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Declan\.android\build-cache\cec14eabcc3e52ea1d13da1c3940220448ea8217\output\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\07ca3e0d087be35e661321d1d061bcb1db49813b\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\ae8c9069078b3a155d08825eed83490f9d40db10\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\2256c7b5feb02e945cbc12d0a3114902fdc6c2c5\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\f32a5f55d29afb5bd9ffd70168e9774cfe8efac2\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\cbd01b08e37ecd09ef9025f4c78c7f0f5702d7d9\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\8a039ded7cd5a544e02bfec0a068c5671d8b4533\output\AndroidManifest.xml:21:5-23:58
+INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\6c4199134f500246c2989d9173de33295bb4b957\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\32282d15a4613beff58d2d122d864743b89e036d\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\6396853626e3607a2187139c621b73f5040b1ce2\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Declan\.android\build-cache\3c81d56c0bd0310d51f01f7bd0275d04144ec670\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\ce4104baedf38adc9fbd2a993dea4d7342991fd3\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Declan\.android\build-cache\2cdebbc7cc33d3b07e7afbf826469b75fb52875b\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\8a8de7f7c7125142ef385f971f2443324ae22125\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\bb8c088a3ca9aaea9f78ed15792103d31048e38a\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\11ddd7c65214d508915efe71039e1b0bd0b5bdb4\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\0096329b96bb327d5833edc7527cfbf03ed11d00\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\4e97e8b9ce7ee5d53076b4f3b0da124506a1f866\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\14d756d2afb942c3fde0ec2189d19d09892a9fed\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Declan\AndroidStudioProjects\TrackMyMeds\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Declan\StudioProjects\trackmymedsAndroid\app\src\main\AndroidManifest.xml
 meta-data#android.support.VERSION
-ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\749c58c673e78f819910a967da12778862aa5854\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\4f99af85bac900ce2d0c5acaf833dffd35cffb46\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Declan\.android\build-cache\1e88ebd7e7f1f41cd1583d05ac1505c61b9b299a\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\17992dbb3e97a6c3db2ea3ea7607778df48ae86e\output\AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\07ca3e0d087be35e661321d1d061bcb1db49813b\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\ae8c9069078b3a155d08825eed83490f9d40db10\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\2256c7b5feb02e945cbc12d0a3114902fdc6c2c5\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\f32a5f55d29afb5bd9ffd70168e9774cfe8efac2\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\cbd01b08e37ecd09ef9025f4c78c7f0f5702d7d9\output\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\8a039ded7cd5a544e02bfec0a068c5671d8b4533\output\AndroidManifest.xml:25:5-27:34
+ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Declan\.android\build-cache\6c4199134f500246c2989d9173de33295bb4b957\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\32282d15a4613beff58d2d122d864743b89e036d\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Declan\.android\build-cache\6396853626e3607a2187139c621b73f5040b1ce2\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Declan\.android\build-cache\3c81d56c0bd0310d51f01f7bd0275d04144ec670\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Declan\.android\build-cache\ce4104baedf38adc9fbd2a993dea4d7342991fd3\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Declan\.android\build-cache\8a8de7f7c7125142ef385f971f2443324ae22125\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Declan\.android\build-cache\bb8c088a3ca9aaea9f78ed15792103d31048e38a\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Declan\.android\build-cache\11ddd7c65214d508915efe71039e1b0bd0b5bdb4\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Declan\.android\build-cache\0096329b96bb327d5833edc7527cfbf03ed11d00\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Declan\.android\build-cache\4e97e8b9ce7ee5d53076b4f3b0da124506a1f866\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Declan\.android\build-cache\14d756d2afb942c3fde0ec2189d19d09892a9fed\output\AndroidManifest.xml:25:5-27:34
 	android:value
-		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:27:9-31
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:27:9-31
 	android:name
-		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\30775df25fb39a8ae19d5c6ac3484f25a271f3c4\output\AndroidManifest.xml:26:9-47
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Declan\.android\build-cache\cc4f25bd9995722141c8912dcda6c0af4c890758\output\AndroidManifest.xml:26:9-47

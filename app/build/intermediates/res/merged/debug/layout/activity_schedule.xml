@@ -45,7 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:headerDividersEnabled="false"
-                android:groupIndicator="@drawable/schedule_expandable"/>
+                android:groupIndicator="@drawable/schedule_expandable"
+                android:childDivider="@color/app_schedule_div"
+                android:dividerHeight="6dp"/>
             <!-- android:layout_margin="16d1p" -->
 
             <android.support.design.widget.FloatingActionButton

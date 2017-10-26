@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -24,15 +21,13 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.support.design.widget.Snackbar;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Calendar;
 
 public class ScheduleActivity extends AppCompatActivity
 {
@@ -51,6 +46,7 @@ public class ScheduleActivity extends AppCompatActivity
 	private ExpandableListView ExpandList;
 
 	private PendingIntent m_backgroundIntent;
+	private ArrayList<PendingIntent> m_notificationIntents;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -69,6 +65,7 @@ public class ScheduleActivity extends AppCompatActivity
 		ExpandList.setAdapter(ExpAdapter);
 
 		m_backgroundIntent = null;
+		m_notificationIntents = new ArrayList<PendingIntent>();
 
 		m_progressView = findViewById(R.id.schedule_progress);
 		m_scheduleFormView = findViewById(R.id.schedule_form);
@@ -129,10 +126,10 @@ public class ScheduleActivity extends AppCompatActivity
 
 		getDailySchedule();
 
-		if (m_backgroundIntent == null)
+		/*if (m_backgroundIntent == null)
 		{
 			//Retrieve a PendingIntent that will perform a broadcast.
-			Intent intent = new Intent(ScheduleActivity.this, BackgroundReceiver.class);
+			Intent intent = new Intent(ScheduleActivity.this, AlarmReceiver.class);
 			m_backgroundIntent = PendingIntent.getBroadcast(ScheduleActivity.this, 0, intent, 0);
 			System.out.println("m_backgroundIntent");
 			System.out.println(m_backgroundIntent);
@@ -142,6 +139,85 @@ public class ScheduleActivity extends AppCompatActivity
 
 			manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, m_backgroundIntent);
 			Toast.makeText(this, "Starting schedule check service!", Toast.LENGTH_SHORT).show();
+
+			sendBroadcast(intent);
+		}*/
+	}
+
+	//TODO:
+	@RequiresApi(api = Build.VERSION_CODES.KITKAT)
+	private void setNotificationAlarms(JSONObject responseJSON)
+	{
+		//Get alarm service.
+		AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+		//Clear any existing alarms.
+		for (int i = 0; i < m_notificationIntents.size(); i++)
+		{
+			manager.cancel(m_notificationIntents.get(i));
+		}
+
+		m_notificationIntents.clear();
+
+		try
+		{
+			JSONArray medication = new JSONArray();
+
+			JSONArray morningMedication = responseJSON.getJSONArray("morning_meds");
+			for (int i = 0; i < morningMedication.length(); i++)
+			{
+				medication.put(morningMedication.getJSONObject(i));
+			}
+
+			JSONArray afternoonMedication = responseJSON.getJSONArray("afternoon_meds");
+			for (int i = 0; i < afternoonMedication.length(); i++)
+			{
+				medication.put(afternoonMedication.getJSONObject(i));
+			}
+
+			for (int i = 0; i < medication.length(); i++)
+			{
+				JSONObject m_scheduleItemJSON = medication.getJSONObject(i);
+
+				MedicationScheduleItem scheduleItem = new MedicationScheduleItem();
+				if (scheduleItem.Initialize(m_scheduleItemJSON))
+				{
+					if (!scheduleItem.m_isTaken)
+					{
+						long wait = scheduleItem.calculateWait();
+
+						System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+						System.out.println(wait);
+
+						//Build intent.
+						Intent intent = new Intent(ScheduleActivity.this, AlarmReceiver.class);
+						intent.putExtra("EXTRA_SCHEDULE_ITEM_JSON", m_scheduleItemJSON.toString());
+						PendingIntent alarmIntent = PendingIntent.getBroadcast(ScheduleActivity.this, i, intent, 0);
+
+						if (wait > 0)
+						{
+							//Set alarm.
+							Calendar calendar = Calendar.getInstance();
+							calendar.add(Calendar.MILLISECOND, (int)wait);
+							manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), alarmIntent);
+
+							m_notificationIntents.add(alarmIntent);
+
+							//DEBUG:
+							//Toast.makeText(this, "Set notification alarm in " + (wait / 1000) + " seconds.", Toast.LENGTH_SHORT).show();
+						}
+						else
+						{
+							//Alarm already due!
+							sendBroadcast(intent);
+						}
+					}
+				}
+			}
+		}
+		catch (JSONException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -247,59 +323,9 @@ public class ScheduleActivity extends AppCompatActivity
 		child.setJSON(row);
 		child.setTag(null);
 
+		item.calculateWait();
+
 		return child;
-	}
-
-	public void checkNotifications(JSONObject responseJSON)
-	{
-		//Task successful.
-		try
-		{
-			JSONArray notificationMedications = responseJSON.getJSONArray("notification_meds");
-
-			for (int i = 0; i < notificationMedications.length(); i++)
-			{
-				//Creates an intent.
-				Intent resultIntent = new Intent(this, ViewScheduleItemActivity.class);
-
-				JSONObject json = (JSONObject) notificationMedications.get(1);
-				MedicationScheduleItem item = new MedicationScheduleItem();
-
-				item.Initialize(json);
-
-				resultIntent.putExtra("EXTRA_SCHEDULE_ITEM_JSON", json.toString());
-
-				//Build notification.
-				NotificationCompat.Builder mBuilder =
-						new NotificationCompat.Builder(this)
-								.setSmallIcon(R.drawable.add_icon)
-								.setContentTitle("Medication Reminder")
-								.setContentText(item.toDisplayString())
-								.setVibrate(new long[]{300, 300});
-				//.setVibrate(new long[]{0, 100, 100, 100, 100, 100, 100, 100, 100, 500, 150, 500, 150, 600, 150, 100, 100, 100, 100, 100, 100, 100, 100, 500, 150, 500, 150, 600, 150});
-
-
-				resultIntent.setAction(Intent.ACTION_MAIN);
-				resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-				resultIntent.putExtra("EXTRA_NOTIFICATION", true);
-
-				PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-						resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-				mBuilder.setContentIntent(pendingIntent);
-
-				NotificationManager mNotificationManager =
-						(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-				// mNotificationId is a unique integer your app uses to identify the
-				// notification. For example, to cancel the notification, you can pass its ID
-				// number to NotificationManager.cancel().
-				mNotificationManager.notify(item.m_id, mBuilder.build());
-			}
-		}
-		catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public ArrayList<ExpandListGroup> populateDailySchedule(JSONObject responseJSON)
@@ -492,7 +518,8 @@ public class ScheduleActivity extends AppCompatActivity
 								ExpandList.expandGroup(i);
 							}
 
-							checkNotifications(m_dailyScheduleTask.m_responseJSON);
+							setNotificationAlarms(m_dailyScheduleTask.m_responseJSON);
+							//checkNotifications(m_dailyScheduleTask.m_responseJSON);
 						}
 						else
 						{

@@ -130,6 +130,7 @@
     <color name="app_bg_dark">#0067a3</color>
     <color name="app_bg_light">#0079bf</color>
     <color name="app_notif">#eb5a46</color>
+    <color name="app_schedule_div">#0072b4</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
@@ -811,7 +812,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/app_bg_dark</item>
         <item name="colorAccent">@color/app_notif</item>
         <item name="android:textColorHint">#444444</item>
     </style>
@@ -821,7 +822,7 @@
         <item name="android:windowFullscreen">false</item>
         <item name="colorAccent">@color/app_notif</item>
         <item name="android:textColorHint">#444444</item>
-        <!-- <item name="android:background">@color/app_bg_dark</item> -->
+        
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
@@ -2360,7 +2361,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHighlight">@android:color/white</item>
         <item name="android:layout_margin">5dp</item>
-        <!-- <item name="android:gravity">left</item> -->
+        
     </style>
     <style name="tmmRadio" parent="@android:style/Widget.CompoundButton.RadioButton">
         <item name="android:color">@android:color/white</item>

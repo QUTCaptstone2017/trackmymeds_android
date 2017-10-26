@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
+        "outputFile": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-h720dp-v13\\values-h720dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 117
                 },
                 "from": {
-                    "file": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "file": "C:\\Users\\Declan\\.android\\build-cache\\6c4199134f500246c2989d9173de33295bb4b957\\output\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

@@ -3,6 +3,7 @@ package com.app.trackmymeds;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -925,6 +926,9 @@ public class AddMedicationActivity extends AppCompatActivity
 						//Request sent successfully.
 						if (taskSucceeded)
 						{
+							NotificationManager nManager = ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+							nManager.cancelAll();
+
 							//Task successful.
 							goSchedule(true);
 						}

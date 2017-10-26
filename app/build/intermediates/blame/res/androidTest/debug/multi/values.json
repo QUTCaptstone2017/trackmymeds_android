@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "C:\\Users\\Declan\\StudioProjects\\trackmymedsAndroid\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\Declan\\.android\\build-cache\\f5a0d1e676532951a82b8085492cb4e082652ed3\\output\\res\\values\\values.xml",
+                    "file": "C:\\Users\\Declan\\.android\\build-cache\\dfe481a6037b699a24fcf54663f0cc9d70253b4a\\output\\res\\values\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
