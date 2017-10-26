@@ -44,7 +44,8 @@
                 android:id="@+id/list_view_medication_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:headerDividersEnabled="false"/>
+                android:headerDividersEnabled="false"
+                android:groupIndicator="@drawable/schedule_expandable"/>
             <!-- android:layout_margin="16d1p" -->
 
             <android.support.design.widget.FloatingActionButton

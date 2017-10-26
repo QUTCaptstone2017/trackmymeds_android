@@ -3,12 +3,18 @@ package com.app.trackmymeds;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,6 +24,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.support.design.widget.Snackbar;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +37,6 @@ import java.util.regex.Pattern;
 public class ScheduleActivity extends AppCompatActivity
 {
 	//Properties.
-	private static String m_targetURL = "https://trackmymeds.frb.io/get_daily_meds_mobile";
 	ScheduleTask m_dailyScheduleTask;
 
 	StorageManager m_storageManager;
@@ -43,6 +49,8 @@ public class ScheduleActivity extends AppCompatActivity
 	private ExpandListAdapter ExpAdapter;
 	private ArrayList<ExpandListGroup> ExpListItems;
 	private ExpandableListView ExpandList;
+
+	private PendingIntent m_backgroundIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +67,8 @@ public class ScheduleActivity extends AppCompatActivity
 		ExpListItems = setStandardGroups();
 		ExpAdapter = new ExpandListAdapter(ScheduleActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+
+		m_backgroundIntent = null;
 
 		m_progressView = findViewById(R.id.schedule_progress);
 		m_scheduleFormView = findViewById(R.id.schedule_form);
@@ -118,6 +128,21 @@ public class ScheduleActivity extends AppCompatActivity
 		});
 
 		getDailySchedule();
+
+		if (m_backgroundIntent == null)
+		{
+			//Retrieve a PendingIntent that will perform a broadcast.
+			Intent intent = new Intent(ScheduleActivity.this, BackgroundReceiver.class);
+			m_backgroundIntent = PendingIntent.getBroadcast(ScheduleActivity.this, 0, intent, 0);
+			System.out.println("m_backgroundIntent");
+			System.out.println(m_backgroundIntent);
+
+			AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+			int interval = 60 * 1000;
+
+			manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, m_backgroundIntent);
+			Toast.makeText(this, "Starting schedule check service!", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
@@ -147,6 +172,14 @@ public class ScheduleActivity extends AppCompatActivity
 			default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@Override
+	public void onRestart()
+	{
+		super.onRestart();
+
+		getDailySchedule();
 	}
 
 	public void goDeleteAccount()
@@ -215,6 +248,58 @@ public class ScheduleActivity extends AppCompatActivity
 		child.setTag(null);
 
 		return child;
+	}
+
+	public void checkNotifications(JSONObject responseJSON)
+	{
+		//Task successful.
+		try
+		{
+			JSONArray notificationMedications = responseJSON.getJSONArray("notification_meds");
+
+			for (int i = 0; i < notificationMedications.length(); i++)
+			{
+				//Creates an intent.
+				Intent resultIntent = new Intent(this, ViewScheduleItemActivity.class);
+
+				JSONObject json = (JSONObject) notificationMedications.get(1);
+				MedicationScheduleItem item = new MedicationScheduleItem();
+
+				item.Initialize(json);
+
+				resultIntent.putExtra("EXTRA_SCHEDULE_ITEM_JSON", json.toString());
+
+				//Build notification.
+				NotificationCompat.Builder mBuilder =
+						new NotificationCompat.Builder(this)
+								.setSmallIcon(R.drawable.add_icon)
+								.setContentTitle("Medication Reminder")
+								.setContentText(item.toDisplayString())
+								.setVibrate(new long[]{300, 300});
+				//.setVibrate(new long[]{0, 100, 100, 100, 100, 100, 100, 100, 100, 500, 150, 500, 150, 600, 150, 100, 100, 100, 100, 100, 100, 100, 100, 500, 150, 500, 150, 600, 150});
+
+
+				resultIntent.setAction(Intent.ACTION_MAIN);
+				resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+				resultIntent.putExtra("EXTRA_NOTIFICATION", true);
+
+				PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+						resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+				mBuilder.setContentIntent(pendingIntent);
+
+				NotificationManager mNotificationManager =
+						(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+				// mNotificationId is a unique integer your app uses to identify the
+				// notification. For example, to cancel the notification, you can pass its ID
+				// number to NotificationManager.cancel().
+				mNotificationManager.notify(item.m_id, mBuilder.build());
+			}
+		}
+		catch (JSONException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<ExpandListGroup> populateDailySchedule(JSONObject responseJSON)
@@ -382,7 +467,7 @@ public class ScheduleActivity extends AppCompatActivity
 			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
 
 			//Create and run an auth task in the background.
-			m_dailyScheduleTask = new ScheduleTask(m_targetURL, mobileToken);
+			m_dailyScheduleTask = new ScheduleTask(mobileToken);
 			m_dailyScheduleTask.setDelegate(new ScheduleTask.AsyncResponse()
 			{
 				@Override
@@ -406,6 +491,8 @@ public class ScheduleActivity extends AppCompatActivity
 							{
 								ExpandList.expandGroup(i);
 							}
+
+							checkNotifications(m_dailyScheduleTask.m_responseJSON);
 						}
 						else
 						{

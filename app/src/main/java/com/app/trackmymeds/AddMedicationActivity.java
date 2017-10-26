@@ -105,6 +105,7 @@ public class AddMedicationActivity extends AppCompatActivity
 		m_addMedicationFormView = findViewById(R.id.add_medication_form);
 
 		m_medAddType = "";
+		m_medScheduleID = -1;
 
 		m_productSelectView = (Spinner)findViewById(R.id.add_medication_spinner_products);
 		m_reminderDateView = (TextView)findViewById(R.id.add_medication_edit_text_date);
@@ -855,6 +856,8 @@ public class AddMedicationActivity extends AppCompatActivity
 		m_nicknameView.setError(null);
 
 		//Get values.
+		String medAddType = m_medAddType;
+
 		//TODO: Lookup the product id based on product name.
 		int idArrayIndex = m_productSelectView.getSelectedItemPosition();
 		int productSelect =  m_productIDItems[idArrayIndex];
@@ -907,7 +910,7 @@ public class AddMedicationActivity extends AppCompatActivity
 			String mobileToken = m_storageManager.getMobileToken(getApplicationContext());
 
 			//Create and run an auth task in the background.
-			m_addMedicationTask = new AddMedicationTask(mobileToken, productSelect, reminderDate,
+			m_addMedicationTask = new AddMedicationTask(mobileToken, medAddType, m_medScheduleID, productSelect, reminderDate,
 					reminderTime, repeatSelect, repeatCustom, toTake, toRemaining, nickname);
 
 			m_addMedicationTask.setDelegate(new ScheduleTask.AsyncResponse()

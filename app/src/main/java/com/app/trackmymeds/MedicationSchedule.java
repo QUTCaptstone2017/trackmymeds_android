@@ -74,6 +74,42 @@ public class MedicationSchedule
 		return true;
 	}
 
+	public String getDisplayDate()
+	{
+		String dateString = "";
+		try
+		{
+			SimpleDateFormat parseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = parseDateFormat.parse(m_dateToTake);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
+			dateString = dateFormat.format(date);
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+
+		return dateString;
+	}
+
+	public String getDisplayTime()
+	{
+		String timeString = "";
+		try
+		{
+			SimpleDateFormat parseTimeFormat = new SimpleDateFormat("HH:mm:ss");
+			Date time = parseTimeFormat.parse(m_timeToTake);
+			SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+			timeString = timeFormat.format(time);
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+
+		return timeString;
+	}
+
 	@Override
 	public String toString()
 	{
@@ -103,34 +139,18 @@ public class MedicationSchedule
 			return "";
 		}
 
-		//TODO: Format the date and time string.
+		//Format the date and time string.
 		String resultString = "";
-		try
-		{
-			SimpleDateFormat parseDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-			Date date = parseDateFormat.parse(m_dateToTake);
-			SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
-			String dateString = dateFormat.format(date);
 
-			SimpleDateFormat parseTimeFormat = new SimpleDateFormat("HH:mm:ss");
-			Date time = parseTimeFormat.parse(m_timeToTake);
-			SimpleDateFormat timeFormat = new SimpleDateFormat("h:mma");
-			String timeString = timeFormat.format(time);
+		String dateString = getDisplayDate();
+		String timeString = getDisplayTime();
 
-			resultString =
-					"Nickname: " + String.valueOf(m_nickname) + "\n" +
-							"Brand Name: " + m_brandName + "\n" +
-							"Product Description:\n" + String.valueOf(m_productDescription) + "\n" +
-							"Starting Date: " + dateString + "\n" +
-							"Starting Time: " + timeString + "\n" +
-							"Day Interval: " + String.valueOf(m_dayInterval) + "\n" +
-							"Number Of Items To Take: " + String.valueOf(m_toTake) + "\n" +
-							"Number Of Items Remaining: " + String.valueOf(m_toRemaining) + "\n";
-		}
-		catch (ParseException e)
-		{
-			e.printStackTrace();
-		}
+		resultString =
+				"Nickname: " + String.valueOf(m_nickname) + "\n" +
+				"Brand Name: " + m_brandName + "\n" +
+				"Product Description:\n" + String.valueOf(m_productDescription) + "\n" +
+				"Starting Date: " + dateString + "\n" +
+				"Starting Time: " + timeString;
 
 		return resultString;
 	}

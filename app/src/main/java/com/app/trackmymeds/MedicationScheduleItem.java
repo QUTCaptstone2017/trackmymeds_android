@@ -3,6 +3,10 @@ package com.app.trackmymeds;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Declan on 16/08/2017.
  */
@@ -96,6 +100,42 @@ public class MedicationScheduleItem
 		return true;
 	}
 
+	public String getDisplayDate()
+	{
+		String dateString = "";
+		try
+		{
+			SimpleDateFormat parseDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = parseDateFormat.parse(m_dateToTake);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM dd");
+			dateString = dateFormat.format(date);
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+
+		return dateString;
+	}
+
+	public String getDisplayTime()
+	{
+		String timeString = "";
+		try
+		{
+			SimpleDateFormat parseTimeFormat = new SimpleDateFormat("HH:mm:ss");
+			Date time = parseTimeFormat.parse(m_timeToTake);
+			SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+			timeString = timeFormat.format(time);
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+
+		return timeString;
+	}
+
 	@Override
 	public String toString()
 	{
@@ -128,12 +168,13 @@ public class MedicationScheduleItem
 			return "";
 		}
 
-		//TODO: Format the time string.
+		//Format the time string.
+		String timeString = getDisplayTime();
 
 		String resultString =
 				"Nickname: " + String.valueOf(m_nickname) + "\n" +
 				"Number Of Items To Take: " + String.valueOf(m_toTake) + "\n" +
-				"Time To Take: " + String.valueOf(m_timeToTake);
+				"Time To Take: " + timeString;
 
 		return resultString;
 	}

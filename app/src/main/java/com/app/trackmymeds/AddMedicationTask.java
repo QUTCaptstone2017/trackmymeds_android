@@ -12,6 +12,9 @@ public class AddMedicationTask extends HTTPTask
 	//Properties.
 	private static final String ADD_MEDICATION_URL = "https://trackmymeds.frb.io/med_add_mobile";
 
+	private String m_medAddType;
+	private int m_medScheduleID;
+
 	private int m_productSelect;
 	private String m_reminderDate;
 	private String m_reminderTime;
@@ -29,20 +32,23 @@ public class AddMedicationTask extends HTTPTask
 	}
 
 	//Constructor.
-	AddMedicationTask(String mobileToken, int productSelect, String reminderDate,
-					  String reminderTime, String repeatSelect, String repeatCustom, int toTake,
-					  int toRemaining, String nickname)
+	AddMedicationTask(String mobileToken, String _medAddType, int _medScheduleID, int _productSelect,
+					  String _reminderDate, String _reminderTime, String _repeatSelect,
+					  String _repeatCustom, int _toTake, int _toRemaining, String _nickname)
 	{
 		super(ADD_MEDICATION_URL, mobileToken);
 
-		m_productSelect = productSelect;
-		m_reminderDate = reminderDate;
-		m_reminderTime = reminderTime;
-		m_repeatSelect = repeatSelect;
-		m_repeatCustom = repeatCustom;
-		m_toTake = toTake;
-		m_toRemaining = toRemaining;
-		m_nickname = nickname;
+		m_medAddType = _medAddType;
+		m_medScheduleID = _medScheduleID;
+
+		m_productSelect = _productSelect;
+		m_reminderDate = _reminderDate;
+		m_reminderTime = _reminderTime;
+		m_repeatSelect = _repeatSelect;
+		m_repeatCustom = _repeatCustom;
+		m_toTake = _toTake;
+		m_toRemaining = _toRemaining;
+		m_nickname = _nickname;
 	}
 
 	protected JSONObject getSendJSON()
@@ -57,7 +63,10 @@ public class AddMedicationTask extends HTTPTask
 
 			//TODO:
 			JSONObject jsonData = new JSONObject();
-			jsonData.put("medAddType", "add");
+			jsonData.put("medAddType", m_medAddType);
+
+			jsonData.put("medScheduleID", m_medScheduleID);
+
 			jsonData.put("productSelect", m_productSelect);
 			jsonData.put("reminderDate", m_reminderDate);
 			jsonData.put("reminderTime", m_reminderTime);

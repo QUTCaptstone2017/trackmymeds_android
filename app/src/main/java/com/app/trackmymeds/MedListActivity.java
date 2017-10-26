@@ -67,8 +67,6 @@ public class MedListActivity extends AppCompatActivity implements SearchView.OnQ
 		m_searchGuideLabel = findViewById(R.id.medication_list_label_search_guide);
 
 		m_medListItems = new ArrayList<MedicationBrand>();
-
-		//TODO: Write a custom styling for this.
 		m_medListAdapter = new MedicationList(getBaseContext(), m_medListItems);
 		m_medListView.setAdapter(m_medListAdapter);
 

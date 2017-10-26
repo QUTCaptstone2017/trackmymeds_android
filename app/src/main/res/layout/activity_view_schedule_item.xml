@@ -26,17 +26,169 @@
         android:layout_height="match_parent"
         android:layout_margin="5sp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@+id/linearLayout">
 
-            <TextView
-                android:id="@+id/view_schedule_item_label_schedule_item_details"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_schedule_item_details"
-                android:textColor="@android:color/white"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/view_schedule_item_nickname_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_nickname"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_nickname_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_brand_name_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_brand_name"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_brand_name_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_product_description_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_product_description"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_product_description_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_date_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_date"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_date_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_time_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_time"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_time_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_day_interval_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_repeat_custom"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_day_interval_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_to_take_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_items_to_take"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_to_take_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_to_remaining_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/label_items_remaining"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/view_schedule_item_to_remaining_value_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/error_value_undefined"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linearLayout">
 
             <Button
                 android:id="@+id/button_take_medication"
@@ -44,7 +196,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_take_medication"/>
-
         </LinearLayout>
 
     </RelativeLayout>

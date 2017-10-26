@@ -68,7 +68,7 @@ public class MedicationList extends BaseAdapter
 		}
 
 		TextView tv = (TextView)view.findViewById(R.id.tvItem);
-		tv.setText(brand.toString());
+		tv.setText(brand.m_name);
 		//tv.setTag(child.getTag());
 
 		return view;

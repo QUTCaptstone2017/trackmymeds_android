@@ -26,6 +26,7 @@
     <string name="error_invalid_password">This password is too short.</string>
     <string name="error_incorrect_password">This password is incorrect.</string>
     <string name="error_field_required">This field is required.</string>
+    <string name="error_value_undefined">UNDEFINED</string>
 
     <!--
         Activity specfic strings:
@@ -80,8 +81,8 @@
     <string name="prompt_items_remaining">Example: 3</string>
     <string name="prompt_nickname">Example: Heart Medication</string>
 
-    <!-- View schedule -->
-    <string name="label_view_schedule_details">SCHEDULE DETAILS UNDEFINED</string>
+    <!-- View schedule/item -->
+    <string name="label_product_description">Product Description:</string>
 
     <!-- View schedule item -->
     <string name="label_schedule_item_details">SCHEDULE ITEM DETAILS UNDEFINED</string>

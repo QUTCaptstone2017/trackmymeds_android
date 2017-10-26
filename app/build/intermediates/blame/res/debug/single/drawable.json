@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\arrow_up_icon.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\drawable\\arrow_up_icon.xml"
+    },
+    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edit_icon.xml",
         "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\drawable\\edit_icon.xml"
     },
@@ -40,12 +44,12 @@
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
-        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
-        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
-    },
-    {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
@@ -58,6 +62,10 @@
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\Declan\\.android\\build-cache\\e3f0aeab3e6f1d53a468492ebd53f1548ae98f47\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\arrow_down_icon.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\drawable\\arrow_down_icon.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\search_icon.xml",
@@ -90,6 +98,10 @@
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\delete_icon.xml",
         "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\drawable\\delete_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\schedule_expandable.xml",
+        "source": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\src\\main\\res\\drawable\\schedule_expandable.xml"
     },
     {
         "merged": "C:\\Users\\Declan\\AndroidStudioProjects\\TrackMyMeds\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",

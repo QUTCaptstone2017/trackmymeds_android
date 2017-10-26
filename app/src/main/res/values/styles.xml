@@ -64,7 +64,7 @@
     <style name="AppTheme.tmmNoActionBarDark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="colorAccent">@color/app_notif</item>
         <item name="android:textColorHint">#444444</item>
         <!-- <item name="android:background">@color/app_bg_dark</item> -->
@@ -112,7 +112,7 @@
         <!-- <item name="android:gravity">left</item> -->
     </style>
 
-    <style name="tmmDeleteButton" parent="tmmButton">
+    <style name="tmmDangerButton" parent="tmmButton">
         <item name="android:background">@color/colorAccent</item>
     </style>
 

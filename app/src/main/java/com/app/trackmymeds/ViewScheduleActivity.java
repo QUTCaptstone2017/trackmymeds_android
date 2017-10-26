@@ -40,6 +40,16 @@ public class ViewScheduleActivity extends AppCompatActivity
 	View m_progressView;
 	View m_viewMedicationRelativeLayout;
 
+	//Value views.
+	TextView m_nicknameValueView;
+	TextView m_brandNameValueView;
+	TextView m_productDescriptionValueView;
+	TextView m_dateValueView;
+	TextView m_timeValueView;
+	TextView m_dayIntervalValueView;
+	TextView m_toTakeValueView;
+	TextView m_toRemainingValueView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -59,6 +69,15 @@ public class ViewScheduleActivity extends AppCompatActivity
 
 		m_progressView = findViewById(R.id.view_medication_progress);
 		m_viewMedicationRelativeLayout = findViewById(R.id.view_medication_relative_layout);
+
+		m_nicknameValueView = (TextView)findViewById(R.id.view_medication_nickname_value_textview);
+		m_brandNameValueView = (TextView)findViewById(R.id.view_medication_brand_name_value_textview);
+		m_productDescriptionValueView = (TextView)findViewById(R.id.view_medication_product_description_value_textview);
+		m_dateValueView = (TextView)findViewById(R.id.view_medication_date_value_textview);
+		m_timeValueView = (TextView)findViewById(R.id.view_medication_time_value_textview);
+		m_dayIntervalValueView = (TextView)findViewById(R.id.view_medication_day_interval_value_textview);
+		m_toTakeValueView = (TextView)findViewById(R.id.view_medication_to_take_value_textview);
+		m_toRemainingValueView = (TextView)findViewById(R.id.view_medication_to_remaining_value_textview);
 
 		ImageButton editMedButton = (ImageButton)findViewById(R.id.view_medication_edit_fab);
 		editMedButton.setOnClickListener(new View.OnClickListener()
@@ -165,10 +184,14 @@ public class ViewScheduleActivity extends AppCompatActivity
 				MedicationSchedule schedule = new MedicationSchedule();
 				if (schedule.Initialize(m_scheduleJSON))
 				{
-					String displayString = schedule.toString();
-
-					TextView m_detailsView = (TextView) findViewById(R.id.view_medication_details_textview);
-					m_detailsView.setText(displayString);
+					m_nicknameValueView.setText(schedule.m_nickname);
+					m_brandNameValueView.setText(schedule.m_brandName);
+					m_productDescriptionValueView.setText(schedule.m_productDescription);
+					m_dateValueView.setText(schedule.getDisplayDate());
+					m_timeValueView.setText(schedule.getDisplayTime());
+					m_dayIntervalValueView.setText(String.valueOf(schedule.m_dayInterval));
+					m_toTakeValueView.setText(String.valueOf(schedule.m_toTake));
+					m_toRemainingValueView.setText(String.valueOf(schedule.m_toRemaining));
 				}
 
 				m_medScheduleID = schedule.m_id;

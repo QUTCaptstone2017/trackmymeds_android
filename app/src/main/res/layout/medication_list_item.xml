@@ -9,9 +9,13 @@
         android:id="@+id/tvItem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:textColor="@android:color/white"
         android:background="@color/app_bg_light"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textAlignment="center" />
 
 </LinearLayout>

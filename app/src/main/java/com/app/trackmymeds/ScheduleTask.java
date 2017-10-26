@@ -13,6 +13,7 @@ import org.json.JSONObject;
 public class ScheduleTask extends HTTPTask
 {
 	//Properties.
+	private static final String SCHEDULE_TASK_URL = "https://trackmymeds.frb.io/get_daily_meds_mobile";
 
 	@Override
 	protected void onPostExecute(final Boolean sendSucceeded)
@@ -22,9 +23,9 @@ public class ScheduleTask extends HTTPTask
 	}
 
 	//Constructor.
-	ScheduleTask(String targetURL, String mobileToken)
+	ScheduleTask(String mobileToken)
 	{
-		super(targetURL, mobileToken);
+		super(SCHEDULE_TASK_URL, mobileToken);
 	}
 
 	protected JSONObject getSendJSON()

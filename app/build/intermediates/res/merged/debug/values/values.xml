@@ -739,6 +739,7 @@
     <string name="error_invalid_email">This email address is invalid.</string>
     <string name="error_invalid_password">This password is too short.</string>
     <string name="error_no_internet">Could not connect to the internet.</string>
+    <string name="error_value_undefined">UNDEFINED</string>
     <string name="label_brand_details">Brand Details:</string>
     <string name="label_brand_name">Brand Name:</string>
     <string name="label_date">Start Date:</string>
@@ -749,6 +750,7 @@
     <string name="label_no_results">No results found.</string>
     <string name="label_password">Password:</string>
     <string name="label_personal_details">Personal Details:</string>
+    <string name="label_product_description">Product Description:</string>
     <string name="label_product_details">Product Details:</string>
     <string name="label_products">Select a Product:</string>
     <string name="label_recurring">Recurring:</string>
@@ -759,7 +761,6 @@
     <string name="label_set_details">Set Details:</string>
     <string name="label_set_timing">Set Timing:</string>
     <string name="label_time">Start Time:</string>
-    <string name="label_view_schedule_details">SCHEDULE DETAILS UNDEFINED</string>
     <string name="menu_action_change_account">Change Account</string>
     <string name="menu_action_delete_account">Delete Account</string>
     <string name="menu_action_delete_medication">Delete Medication</string>
@@ -817,7 +818,7 @@
     <style name="AppTheme.tmmNoActionBarDark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="colorAccent">@color/app_notif</item>
         <item name="android:textColorHint">#444444</item>
         <!-- <item name="android:background">@color/app_bg_dark</item> -->
@@ -2346,7 +2347,7 @@
         <item name="android:textColorHighlight">@android:color/white</item>
         <item name="android:layout_margin">5dp</item>
     </style>
-    <style name="tmmDeleteButton" parent="tmmButton">
+    <style name="tmmDangerButton" parent="tmmButton">
         <item name="android:background">@color/colorAccent</item>
     </style>
     <style name="tmmListView" parent="@android:style/Widget.ListView">

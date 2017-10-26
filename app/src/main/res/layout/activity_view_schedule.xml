@@ -42,10 +42,147 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/view_medication_details_textview"
+                android:id="@+id/view_medication_nickname_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_view_schedule_details"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_nickname"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_nickname_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_brand_name_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_brand_name"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_brand_name_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_product_description_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_product_description"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_product_description_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_date_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_date"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_date_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_time_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_time"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_time_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_day_interval_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_repeat_custom"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_day_interval_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_to_take_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_items_to_take"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_to_take_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/view_medication_to_remaining_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/label_items_remaining"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/view_medication_to_remaining_value_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/error_value_undefined"
                 android:textColor="@android:color/white"/>
 
         </LinearLayout>

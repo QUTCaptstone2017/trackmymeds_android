@@ -9,7 +9,10 @@
         android:id="@+id/tvGroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
         android:textColor="@android:color/white"
         android:background="@color/app_bg_light"
         android:textSize="20sp" />
